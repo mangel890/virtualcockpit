@@ -556,7 +556,7 @@ Toggle swFD1(PSWFD1, "FD1");
 
 void setup () {
 
-  Serial.begin (9600);
+  Serial.begin (115200, SERIAL_8O2);
   pinMode(13, OUTPUT);
 
 }
