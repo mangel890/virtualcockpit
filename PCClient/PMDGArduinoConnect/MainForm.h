@@ -289,7 +289,7 @@ private: System::Void serialLedSendTest(const char* ledCmd, int value)
 			 *(command+5) = '0' + value;
 			 char result = SP->WriteData(command,7);
 
-			 if (result != 0)
+			 if (result == false)
 			 {
 				 Logger::log("ERROR\n");//gcnew System::String(&result));
 			 }
@@ -297,9 +297,8 @@ private: System::Void serialLedSendTest(const char* ledCmd, int value)
 			 {
 				 Logger::log("Ok\n");//gcnew System::String(&result));
 			 }
-			 Sleep(2);
+		 Sleep(20);
 		 }
-
 
 
 };
