@@ -277,6 +277,44 @@ private: System::Void runTests_Click(System::Object^  sender, System::EventArgs^
 			 serialLedSendTest("LVSPD",0);
 			 serialLedSendTest("LCMDA",0);
 			 serialLedSendTest("LCWSA",0);
+			 for (int k=0;k<10;k++)
+			 {
+				 serialDisplaySendTest("DCRS1",k);
+				 serialDisplaySendTest("DIASM",k);
+				 serialDisplaySendTest("DHDGM",k);
+				 serialDisplaySendTest("DALTM",k);
+				 serialDisplaySendTest("DVSPM",k);
+				 			 serialLedSendTest("LMAS1",1);
+			 serialLedSendTest("LATAR",1);
+			 serialLedSendTest("LN1ID",1);
+			 serialLedSendTest("LSPID",1);
+			 serialLedSendTest("LVNID",1);
+			 serialLedSendTest("LLVLC",1);
+			 serialLedSendTest("LHDGL",1);
+			 serialLedSendTest("LLNAV",1);
+			 serialLedSendTest("LVORL",1);
+			 serialLedSendTest("LAPPS",1);
+			 serialLedSendTest("LALTH",1);
+			 serialLedSendTest("LVSPD",1);
+			 serialLedSendTest("LCMDA",1);
+			 serialLedSendTest("LCWSA",1);
+
+			 serialLedSendTest("LMAS1",0);
+			 serialLedSendTest("LATAR",0);
+			 serialLedSendTest("LN1ID",0);
+			 serialLedSendTest("LSPID",0);
+			 serialLedSendTest("LVNID",0);
+			 serialLedSendTest("LLVLC",0);
+			 serialLedSendTest("LHDGL",0);
+			 serialLedSendTest("LLNAV",0);
+			 serialLedSendTest("LVORL",0);
+			 serialLedSendTest("LAPPS",0);
+			 serialLedSendTest("LALTH",0);
+			 serialLedSendTest("LVSPD",0);
+			 serialLedSendTest("LCMDA",0);
+			 serialLedSendTest("LCWSA",0);
+			 }
+
 
 		 }
 
@@ -297,9 +335,30 @@ private: System::Void serialLedSendTest(const char* ledCmd, int value)
 			 {
 				 Logger::log("Ok\n");//gcnew System::String(&result));
 			 }
-//		 Sleep(1);
 		 }
 
+private: System::Void serialDisplaySendTest(const char* display, int value)
+		 {
+			 Serial* SP = MainFactory::getSerialIf();
+
+			 char command[11] = {0,0,0,0,0,0,0,0,0,0,0};
+			 strcpy(command,display);
+			 *(command+5) = '0' + value;
+			 *(command+6) = '0' + value;
+			 *(command+7) = '0' + value;
+			 *(command+8) = '0' + value;
+			 *(command+9) = '0' + value;
+			 char result = SP->WriteData(command,10);
+
+			 if (result == false)
+			 {
+				 Logger::log("ERROR\n");//gcnew System::String(&result));
+			 }
+			 else
+			 {
+				 Logger::log("Ok\n");//gcnew System::String(&result));
+			 }
+		 }
 
 };
 
