@@ -521,10 +521,10 @@ class Toggle
         lastTimeM = millis();
         String tmpStr("EVT:");
         tmpStr += evtM;
-        if (val==1)
-           tmpStr+="+";
+        if (val == 1)
+          tmpStr += "+";
         else
-           tmpStr+="-";
+          tmpStr += "-";
         tmpStr += "\7";
 
         Serial.print(tmpStr);
@@ -554,13 +554,64 @@ Switch swDisengage(PSWDISENGAGE, "DISE");
 Toggle swFD1(PSWFD1, "FD1");
 //Switch swFD2(PSWFD2, "FD2S");
 
+
+const int BUFFER_SIZE = 512;
+
+class SerialBuffer
+{
+  public:
+
+    char serialBuffer[BUFFER_SIZE];
+
+    int readingPtr;
+    int writingPtr;
+
+
+    SerialBuffer():
+      readingPtr(0), writingPtr(0)
+    {
+      for (int k = 0; k < BUFFER_SIZE; k++)
+      {
+        serialBuffer[k] = 0;
+      }
+    }
+
+    bool available()
+    {
+      while (Serial.available() > 0)
+      {
+        serialBuffer[writingPtr] = Serial.read();
+        writingPtr++;
+        writingPtr %= BUFFER_SIZE;
+      }
+      return readingPtr != writingPtr;
+    }
+
+    char read()
+    {
+      if (readingPtr != writingPtr)
+      {
+        char value = serialBuffer[readingPtr];
+        readingPtr++;
+        readingPtr %= BUFFER_SIZE;
+        return value;
+      }
+      return -1;
+    }
+
+};
+
+
 void setup () {
 
   Serial.begin (115200, SERIAL_8O2);
   pinMode(13, OUTPUT);
 
 }
+
 int i = 0;
+SerialBuffer serialBuffer;
+
 
 void loop ()
 {
@@ -609,17 +660,21 @@ void loop ()
   swCmdA.read();
   swCwsA.read();
   swDisengage.read();
-//  swCmdB.read();
-//  swCwsB.read();
-    swFD1.read();
-//    swFD2.read();
-    
+  //  swCmdB.read();
+  //  swCwsB.read();
+  swFD1.read();
+  //    swFD2.read();
+
   //********************************
   // Read Serial incoming events
   //********************************
-  if (Serial.available() > 0)
+  if (serialBuffer.available())
   {
-    int incomingByte = Serial.read();
+    Serial.print("Data avail:");
+    Serial.println(Serial.available());
+    //if (Serial.available() > 55)
+    //Serial.println("*****WARNING****OVERFLOW****");
+    int incomingByte = serialBuffer.read();
     if (incomingByte == 'l')
     {
       Serial.print("Converted: ");
@@ -628,10 +683,10 @@ void loop ()
       byte byteRead = 0;
 
       char str[3] = {0, 0, 0};
-      while (counter<2)  // 2 chars to define the led
+      while (counter < 2) // 2 chars to define the led
       {
-        if ((byteRead = Serial.read())!=-1)
-           str[counter++] = byteRead;
+        if ((byteRead = serialBuffer.read()) != -1)
+          str[counter++] = byteRead;
       }
       int ledToChange = atoi(str);
       Serial.print(ledToChange);
@@ -643,21 +698,21 @@ void loop ()
       char str[4] = {0, 0, 0, 0};
       int counter = 0;
       byte byteRead = 0;
-      while (counter<2)  // 2 chars to define the display
+      while (counter < 2) // 2 chars to define the display
       {
-        if ((byteRead = Serial.read())!=-1)
-           str[counter++] = byteRead;
+        if ((byteRead = serialBuffer.read()) != -1)
+          str[counter++] = byteRead;
       }
       int displayToChange = atoi(str);
       Serial.print(displayToChange);
       char strVal[2] = {0, 0};
       counter = 0;
-      while (counter<1)  // 1 chars to define the value
+      while (counter < 1) // 1 chars to define the value
       {
-        if ((byteRead = Serial.read())!=-1)
-           strVal[counter++] = byteRead;
+        if ((byteRead = serialBuffer.read()) != -1)
+          strVal[counter++] = byteRead;
       }
-      
+
       int valToSet = atoi(strVal);
       Serial.print("\nValue: ");
       Serial.println(valToSet);
@@ -669,18 +724,18 @@ void loop ()
       int counter = 0;
       byte byteRead = 0;
       char command[6] = {0, 0, 0, 0, 0, 0};
-      while (counter<4)  // 4 chars to define the command
+      while (counter < 4) // 4 chars to define the command
       {
-        if ((byteRead = Serial.read())!=-1)
-           command[counter++] = byteRead;
+        if ((byteRead = serialBuffer.read()) != -1)
+          command[counter++] = byteRead;
       }
-        
+
       counter = 0;
       char value[6] = {0, 0, 0, 0, 0, 0};
-      while (counter<5) // 5 digits to define the value
+      while (counter < 5) // 5 digits to define the value
       {
-        if ((byteRead = Serial.read())!=-1)
-           value[counter++] = byteRead;
+        if ((byteRead = serialBuffer.read()) != -1)
+          value[counter++] = byteRead;
       }
       displays.setDisplay(command, value);
     }
@@ -690,29 +745,25 @@ void loop ()
       byte byteRead = 0;
 
       char ledName[6] = {0, 0, 0, 0, 0, 0};
-      while (counter<4)  // 4 chars to define the command
+      while (counter < 4) // 4 chars to define the command
       {
-        if ((byteRead = Serial.read())!=-1)
-           ledName[counter++] = byteRead;
+        if ((byteRead = serialBuffer.read()) != -1)
+          ledName[counter++] = byteRead;
       }
       counter = 0;
       char value = '0';
-      while (counter<1)  // 1 char to define the value
+      while (counter < 1) // 1 char to define the value
       {
-        if ((byteRead = Serial.read())!=-1)
-           value = byteRead;
-           counter++;
+        if ((byteRead = serialBuffer.read()) != -1)
+          value = byteRead;
+        counter++;
       }
       leds.setLed(ledName, value);
     }
   }
 
+//  while (Serial.available() > 0)
+//    Serial.read();
+
 };
-
-
-
-
-
-
-
 

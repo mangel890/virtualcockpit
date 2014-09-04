@@ -297,7 +297,7 @@ private: System::Void serialLedSendTest(const char* ledCmd, int value)
 			 {
 				 Logger::log("Ok\n");//gcnew System::String(&result));
 			 }
-		 Sleep(20);
+//		 Sleep(1);
 		 }
 
 
