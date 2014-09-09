@@ -228,7 +228,10 @@ class Displays
         digitalWrite(pinDisplay1M, b);
         digitalWrite(pinDisplay0M, a);
       }
-      delayMicroseconds(persistencyCte);
+      if (displayStatus[i] == 1 || displayStatus[i] == 7)
+        delayMicroseconds(persistencyCte / 2);
+      else
+        delayMicroseconds(persistencyCte);
     }
 
 
@@ -679,12 +682,6 @@ void loop ()
   //********************************
   if (serialBuffer.available())
   {
-    Serial.print("WPtr:");
-    Serial.println(serialBuffer.writingPtr);
-    Serial.print("RPtr:");
-    Serial.println(serialBuffer.readingPtr);
-    //if (Serial.available() > 55)
-    //Serial.println("*****WARNING****OVERFLOW****");
     int incomingByte = serialBuffer.read();
     if (incomingByte == 'l')
     {
@@ -731,33 +728,21 @@ void loop ()
     }
     else if (incomingByte == 'D')
     {
-Serial.println("Rec1:D");
       int counter = 0;
       int byteRead = 0;
       char command[6] = {0, 0, 0, 0, 0, 0};
       while (counter < 4) // 4 chars to define the command
       {
         if ((byteRead = serialBuffer.read()) != -1)
-{          command[counter++] = (char)byteRead;
-          if (byteRead == -1){
-             Serial.println("**********************WARNING**************");delay(1000);}
- }
+          command[counter++] = (char)byteRead;
       }
-Serial.print("Rec2:");
-Serial.println(command);
       counter = 0;
       char value[6] = {0, 0, 0, 0, 0, 0};
       while (counter < 5) // 5 digits to define the value
       {
         if ((byteRead = serialBuffer.read()) !=  -1)
-{          value[counter++] = (char)byteRead;
-          if (byteRead == -1){
-             Serial.println("**********************WARNING**************");delay(1000);}
-           Serial.print("Val:");
-           Serial.println(byteRead);
-}      }
-Serial.print("Rec3:");
-Serial.println(value);
+          value[counter++] = (char)byteRead;
+      }
       displays.setDisplay(command, value);
     }
     else if (incomingByte == 'L')
