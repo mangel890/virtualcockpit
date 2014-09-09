@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FSUIPC_User.h" />
+    <ClInclude Include="IPCuser.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MainFactory.h" />
     <ClInclude Include="MainForm.h">
@@ -22,6 +24,7 @@
     <ClInclude Include="SimConnect.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="IPCuser.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="MainFactory.cpp" />
     <ClCompile Include="MainForm.cpp" />
