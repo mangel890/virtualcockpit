@@ -88,14 +88,16 @@ class Displays
     int pinValueFM;
     int pinValueGM;
     int pinValueDPM;
-
+    
+    bool iasBlankM;
+    
   public:
 
     Displays(int display0, int display1, int display2, int display3, int display4, int display5, int enabler,
              int valueA, int valueB, int valueC, int valueD, int valueE, int valueF, int valueG, int valueDP):
       pinDisplay0M(display0), pinDisplay1M(display1), pinDisplay2M(display2), pinDisplay3M(display3), pinDisplay4M(display4),
       pinDisplay5M(display5), pinEnablerM(enabler), pinValueAM(valueA), pinValueBM(valueB), pinValueCM(valueC), pinValueDM(valueD),
-      pinValueEM(valueE), pinValueFM(valueF), pinValueGM(valueG), pinValueDPM(valueDP)
+      pinValueEM(valueE), pinValueFM(valueF), pinValueGM(valueG), pinValueDPM(valueDP), iasBlankM(0)
     {
       pinMode(pinDisplay0M, OUTPUT);
       pinMode(pinDisplay1M, OUTPUT);
@@ -137,6 +139,10 @@ class Displays
         setDisplay(4, value[3] - '0');
         setDisplay(5, value[2] - '0');
       }
+      else if (strcmp(command, "IASB") == 0)
+      {
+        iasBlankM = value[4]-'0';
+      }
       else if (strcmp(command, "HDGM") == 0)
       {
         setDisplay(7, value[4] - '0');
@@ -160,9 +166,14 @@ class Displays
       }
     }
 
-    void showDisplay(int i)
+    bool isBlankDisplay(int i)
+    {      
+       return (displayStatus[i] == -1 || (iasBlankM && (i==3 || i==4 || i==5)));    
+    }
+
+    void showDisplay(int i)  //+1000 to show a point, 
     {
-      if (displayStatus[i] != -1)
+      if (!isBlankDisplay(i))
       {
         x = i;
         a = x % 2;
@@ -558,13 +569,13 @@ Toggle swFD1(PSWFD1, "FD1");
 //Switch swFD2(PSWFD2, "FD2S");
 
 
-const int BUFFER_SIZE = 2500;
+const int BUFFER_SIZE = 3000;
 
 class SerialBuffer
 {
   public:
 
-    int serialBuffer[BUFFER_SIZE];
+    byte serialBuffer[BUFFER_SIZE];
 
     int readingPtr;
     int writingPtr;
@@ -616,7 +627,7 @@ class SerialBuffer
 
 void setup () {
 
-  Serial.begin (115200, SERIAL_8O2);
+  Serial.begin (38400, SERIAL_8O2);
   pinMode(13, OUTPUT);
 
 }
@@ -682,6 +693,7 @@ void loop ()
   //********************************
   if (serialBuffer.available())
   {
+    //Serial.println(serialBuffer.size());
     int incomingByte = serialBuffer.read();
     if (incomingByte == 'l')
     {
@@ -768,6 +780,24 @@ void loop ()
       }
       leds.setLed(ledName, value);
     }
+    else if (incomingByte == 't')
+    {
+
+      int counter = 0;
+      int byteRead = 0;
+
+      char testName[6] = {0, 0, 0, 0, 0, 0};
+      while (counter < 4) // 4 chars to define the test name
+      {
+        if ((byteRead = serialBuffer.read()) != -1)
+          testName[counter++] = byteRead;
+      }
+      Serial.print("ANSWER:");
+      Serial.print(testName);
+      Serial.print(" SUM");
+      Serial.println(testName[0]+testName[1]+testName[2]+testName[3]);
+    }
+
   }
 
   //  while (Serial.available() > 0)
