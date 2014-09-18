@@ -19,12 +19,13 @@ void serialCommLoop (void* dummy)
 
 	if (SP->IsConnected())
 		Logger::log("We're connected");
-
+	
 	char incomingData[256] = "";			// don't forget to pre-allocate memory
 	//printf("%s\n",incomingData);
 	int dataLength = 256;
 	int readResult = 0;
 
+	std::string str;
 	while(SP->IsConnected())
 	{
 		readResult = SP->ReadData(incomingData,dataLength);
@@ -35,7 +36,8 @@ void serialCommLoop (void* dummy)
 			//sprintf(buffer, "Bytes read: (-1 means no data available) %i\n",readResult);
 			//Logger::log(gcnew String(buffer));
 
-			std::string str(incomingData);
+			//std::string str(incomingData,readResult);
+			str.append(incomingData, readResult);
 
 			//String^ str = gcnew String(incomingData,0,dataLength);
 			Logger::log("\n\n****MainForm:: Receiving from Serial:");
@@ -192,6 +194,6 @@ void serialCommLoop (void* dummy)
 		for (int i=0;i<255;i++)
 			incomingData[i]=0;
 
-		Sleep(100);
+		Sleep(17);
 	}
 }

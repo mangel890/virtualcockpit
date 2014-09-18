@@ -20,6 +20,7 @@ PMDGIf::PMDGIf(void)
 	NGX_annunATArm = false;
 	NGX_annunN1 = false;
 	NGX_annunSPEED = false;
+	NGX_MCP_VertSpeedBlank = false;
 }
 
 
@@ -183,20 +184,20 @@ void PMDGIf::ProcessNGXData (PMDG_NGX_Data *pS)
 	/*
 	if (pS->MCP_annunATArm != NGX_annunATArm)
 	{
-		NGX_annunATArm = pS->MCP_annunATArm;
-		Logger::log("\MCP_annunATArm:");
-		char buffer[100];
-		sprintf_s(buffer, "%d\n", pS->MCP_annunATArm);
-		Logger::log(gcnew System::String(buffer));
+	NGX_annunATArm = pS->MCP_annunATArm;
+	Logger::log("\MCP_annunATArm:");
+	char buffer[100];
+	sprintf_s(buffer, "%d\n", pS->MCP_annunATArm);
+	Logger::log(gcnew System::String(buffer));
 
 
-		Serial* SP = MainFactory::getSerialIf();
-		char command[7] = {0,0,0,0,0,0,0};
-		strcpy(command,"LATAR");
-		*(command+5) = '0' + NGX_annunATArm;
-		//*(command+6) = '0';
-		SP->WriteData(command,7);
-		Logger::log(gcnew System::String(command));
+	Serial* SP = MainFactory::getSerialIf();
+	char command[7] = {0,0,0,0,0,0,0};
+	strcpy(command,"LATAR");
+	*(command+5) = '0' + NGX_annunATArm;
+	//*(command+6) = '0';
+	SP->WriteData(command,7);
+	Logger::log(gcnew System::String(command));
 	}
 	*/
 	if (pS->MCP_annunN1 != NGX_annunN1)
@@ -1075,7 +1076,7 @@ void PMDGIf::connect()
 	else
 		MessageBox (NULL, pszErrors[dwResult], L"UIPChello: Failed to open link to FSUIPC", 0) ;
 
-	
+
 
 }
 void PMDGIf::loop(void *dummy)
@@ -1094,7 +1095,7 @@ void PMDGIf::loop(void *dummy)
 			// If we wanted other reads/writes at the same time, we could put them here
 				!FSUIPC_Process(&dwResult)) // Process the request(s)
 				Logger::log(gcnew System::String("ERROR"));//MessageBox (NULL, L"ERROR", L"UIPChello: Link established to FSUIPC", 0) ;
-   //Logger::log("V:"+gcnew System::String((const wchar_t*) &atArm));
+		//Logger::log("V:"+gcnew System::String((const wchar_t*) &atArm));
 		if (atArm != NGX_annunATArm)
 		{
 			NGX_annunATArm = atArm;
@@ -1112,7 +1113,36 @@ void PMDGIf::loop(void *dummy)
 			SP->WriteData(command,7);
 			Logger::log(gcnew System::String(command));
 		}	
-		
+
+
+		bool iASBlank;
+		dwResult=0;
+		if (!FSUIPC_Read(0x6528, 1, &iASBlank, &dwResult) ||
+			// If we wanted other reads/writes at the same time, we could put them here
+				!FSUIPC_Process(&dwResult)) // Process the request(s)
+				Logger::log(gcnew System::String("ERROR"));//MessageBox (NULL, L"ERROR", L"UIPChello: Link established to FSUIPC", 0) ;
+		//Logger::log("V:"+gcnew System::String((const wchar_t*) &atArm));
+		if (iASBlank != NGX_MCP_VertSpeedBlank)
+		{
+			NGX_MCP_VertSpeedBlank = iASBlank;
+			Logger::log("\MCP_IasBlank:");
+			char buffer[100];
+			sprintf_s(buffer, "%d\n", NGX_MCP_VertSpeedBlank);
+			Logger::log(gcnew System::String(buffer));
+
+
+			Serial* SP = MainFactory::getSerialIf();
+			char command[11] = {0,0,0,0,0,0,0,0,0,0,0};
+			strcpy(command,"DIASB");
+			*(command+5) = '0';
+			*(command+6) = '0';
+			*(command+7) = '0';
+			*(command+8) = '0';
+			*(command+9) = '0' + NGX_MCP_VertSpeedBlank;
+			SP->WriteData(command,11);
+
+			Logger::log(gcnew System::String(command));
+		}	
 	} 
 
 	hr = SimConnect_Close(hSimConnect);

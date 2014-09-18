@@ -247,6 +247,12 @@ private: System::Void requestSystemState_Click(System::Object^  sender, System::
 		 }
 private: System::Void runTests_Click(System::Object^  sender, System::EventArgs^  e) {
 
+			/* for (int k=0;k<1000;k++)
+			 {
+
+				 MainFactory::getSerialIf()->WriteData("t1234",5);
+			 }
+			 */
 
 			 serialLedSendTest("LMAS1",1);
 			 serialLedSendTest("LATAR",1);
@@ -314,7 +320,7 @@ private: System::Void runTests_Click(System::Object^  sender, System::EventArgs^
 			 serialLedSendTest("LCMDA",0);
 			 serialLedSendTest("LCWSA",0);
 			 }
-
+			 
 
 		 }
 
