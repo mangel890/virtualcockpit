@@ -57,7 +57,7 @@ int persistencyCte = 100; //100 recommended
 // Displays
 //*********
 const int numberOfDisplays = 19;
-const int segmentDisplay[10][7] = {{0, 0, 0, 0, 0, 0, 1}, //0
+const int segmentDisplay[16][7] = {{0, 0, 0, 0, 0, 0, 1}, //0
   {1, 0, 0, 1, 1, 1, 1}, //1
   {0, 0, 1, 0, 0, 1, 0}, //2
   {0, 0, 0, 0, 1, 1, 0}, //3
@@ -66,7 +66,13 @@ const int segmentDisplay[10][7] = {{0, 0, 0, 0, 0, 0, 1}, //0
   {0, 1, 0, 0, 0, 0, 0}, //6
   {0, 0, 0, 1, 1, 1, 1}, //7
   {0, 0, 0, 0, 0, 0, 0}, //8
-  {0, 0, 0, 1, 1, 0, 0} //9
+  {0, 0, 0, 1, 1, 0, 0}, //9
+  {0, 0, 0, 1, 0, 0, 0}, //10 = A
+  {1, 1, 1, 1, 1, 1, 0}, //11 = b
+  {1, 1, 1, 1, 1, 1, 0}, //12 = C
+  {1, 1, 1, 1, 1, 1, 0}, //13 = d
+  {1, 1, 1, 1, 1, 1, 0}, //14 = E
+  {1, 1, 1, 1, 1, 1, 0}, //15 = F
 };
 class Displays
 {
@@ -90,6 +96,9 @@ class Displays
     int pinValueDPM;
     
     bool iasBlankM;
+    bool iasUnderspeedM;
+    bool iasOverspeedM;
+    bool vspdBlankM;
     
   public:
 
@@ -97,7 +106,8 @@ class Displays
              int valueA, int valueB, int valueC, int valueD, int valueE, int valueF, int valueG, int valueDP):
       pinDisplay0M(display0), pinDisplay1M(display1), pinDisplay2M(display2), pinDisplay3M(display3), pinDisplay4M(display4),
       pinDisplay5M(display5), pinEnablerM(enabler), pinValueAM(valueA), pinValueBM(valueB), pinValueCM(valueC), pinValueDM(valueD),
-      pinValueEM(valueE), pinValueFM(valueF), pinValueGM(valueG), pinValueDPM(valueDP), iasBlankM(0)
+      pinValueEM(valueE), pinValueFM(valueF), pinValueGM(valueG), pinValueDPM(valueDP), iasBlankM(0), iasUnderspeedM(0), 
+      iasOverspeedM(0), vspdBlankM(0)
     {
       pinMode(pinDisplay0M, OUTPUT);
       pinMode(pinDisplay1M, OUTPUT);
@@ -143,6 +153,22 @@ class Displays
       {
         iasBlankM = value[4]-'0';
       }
+      else if (strcmp(command, "IASO") == 0)
+      {
+        iasOverspeedM = value[4]-'0';
+        if (iasOverspeedM == 1)
+           setDisplay(6, 8);
+        else
+           setDisplay(6,-1);
+      }
+      else if (strcmp(command, "IASU") == 0)
+      {
+        iasUnderspeedM = value[4]-'0';
+        if (iasUnderspeedM == 1)
+           setDisplay(6, 10);
+        else
+           setDisplay(6,-1);
+      }
       else if (strcmp(command, "HDGM") == 0)
       {
         setDisplay(7, value[4] - '0');
@@ -164,11 +190,18 @@ class Displays
         setDisplay(14, (value[3] - '0') + pointSet);
         setDisplay(15, (value[2] - '0') + pointSet);
       }
+      else if (strcmp(command, "VSPB") == 0)
+      {
+        vspdBlankM = value[4]-'0';
+      }
     }
 
     bool isBlankDisplay(int i)
     {      
-       return (displayStatus[i] == -1 || (iasBlankM && (i==3 || i==4 || i==5)));    
+       return (displayStatus[i] == -1 || 
+       (iasBlankM && (i==3 || i==4 || i==5)) ||
+       (vspdBlankM && (i==13 || i==14 || i==15)) ||
+       ((iasUnderspeedM || iasOverspeedM) && (i==6) && (((millis()/500)%2)==0)) );    
     }
 
     void showDisplay(int i)  //+1000 to show a point, 
@@ -203,7 +236,7 @@ class Displays
           val = val - 1000;
           dpm = 0;
         }
-        if (val >= 0 && val <= 9)
+        if (val >= 0 && val <= 15)
         {
           digitalWrite(pinValueAM, segmentDisplay[val][0]);
           digitalWrite(pinValueBM, segmentDisplay[val][1]);
