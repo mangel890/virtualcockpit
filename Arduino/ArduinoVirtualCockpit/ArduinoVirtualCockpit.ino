@@ -57,7 +57,7 @@ int persistencyCte = 100; //100 recommended
 // Displays
 //*********
 const int numberOfDisplays = 19;
-const int segmentDisplay[16][7] = {{0, 0, 0, 0, 0, 0, 1}, //0
+const int segmentDisplay[17][7] = {{0, 0, 0, 0, 0, 0, 1}, //0
   {1, 0, 0, 1, 1, 1, 1}, //1
   {0, 0, 1, 0, 0, 1, 0}, //2
   {0, 0, 0, 0, 1, 1, 0}, //3
@@ -73,6 +73,7 @@ const int segmentDisplay[16][7] = {{0, 0, 0, 0, 0, 0, 1}, //0
   {1, 1, 1, 1, 1, 1, 0}, //13 = d
   {1, 1, 1, 1, 1, 1, 0}, //14 = E
   {1, 1, 1, 1, 1, 1, 0}, //15 = F
+  {1, 1, 1, 1, 1, 1, 1}  //16 = empty for showing just the point
 };
 class Displays
 {
@@ -94,19 +95,19 @@ class Displays
     int pinValueFM;
     int pinValueGM;
     int pinValueDPM;
-    
+
     bool iasBlankM;
     bool iasUnderspeedM;
     bool iasOverspeedM;
     bool vspdBlankM;
-    
+
   public:
 
     Displays(int display0, int display1, int display2, int display3, int display4, int display5, int enabler,
              int valueA, int valueB, int valueC, int valueD, int valueE, int valueF, int valueG, int valueDP):
       pinDisplay0M(display0), pinDisplay1M(display1), pinDisplay2M(display2), pinDisplay3M(display3), pinDisplay4M(display4),
       pinDisplay5M(display5), pinEnablerM(enabler), pinValueAM(valueA), pinValueBM(valueB), pinValueCM(valueC), pinValueDM(valueD),
-      pinValueEM(valueE), pinValueFM(valueF), pinValueGM(valueG), pinValueDPM(valueDP), iasBlankM(0), iasUnderspeedM(0), 
+      pinValueEM(valueE), pinValueFM(valueF), pinValueGM(valueG), pinValueDPM(valueDP), iasBlankM(0), iasUnderspeedM(0),
       iasOverspeedM(0), vspdBlankM(0)
     {
       pinMode(pinDisplay0M, OUTPUT);
@@ -147,27 +148,33 @@ class Displays
       {
         setDisplay(3, value[4] - '0');
         setDisplay(4, value[3] - '0');
-        setDisplay(5, value[2] - '0');
+        if (value[2] == '.')
+
+          setDisplay(5, 1016);
+
+        else
+          setDisplay(5, value[2] - '0');
+
       }
       else if (strcmp(command, "IASB") == 0)
       {
-        iasBlankM = value[4]-'0';
+        iasBlankM = value[4] - '0';
       }
       else if (strcmp(command, "IASO") == 0)
       {
-        iasOverspeedM = value[4]-'0';
+        iasOverspeedM = value[4] - '0';
         if (iasOverspeedM == 1)
-           setDisplay(6, 8);
+          setDisplay(6, 8);
         else
-           setDisplay(6,-1);
+          setDisplay(6, -1);
       }
       else if (strcmp(command, "IASU") == 0)
       {
-        iasUnderspeedM = value[4]-'0';
+        iasUnderspeedM = value[4] - '0';
         if (iasUnderspeedM == 1)
-           setDisplay(6, 10);
+          setDisplay(6, 10);
         else
-           setDisplay(6,-1);
+          setDisplay(6, -1);
       }
       else if (strcmp(command, "HDGM") == 0)
       {
@@ -192,19 +199,19 @@ class Displays
       }
       else if (strcmp(command, "VSPB") == 0)
       {
-        vspdBlankM = value[4]-'0';
+        vspdBlankM = value[4] - '0';
       }
     }
 
     bool isBlankDisplay(int i)
-    {      
-       return (displayStatus[i] == -1 || 
-       (iasBlankM && (i==3 || i==4 || i==5)) ||
-       (vspdBlankM && (i==13 || i==14 || i==15)) ||
-       ((iasUnderspeedM || iasOverspeedM) && (i==6) && (((millis()/500)%2)==0)) );    
+    {
+      return (displayStatus[i] == -1 ||
+              (iasBlankM && (i == 3 || i == 4 || i == 5)) ||
+              (vspdBlankM && (i == 13 || i == 14 || i == 15)) ||
+              ((iasUnderspeedM || iasOverspeedM) && (i == 6) && (((millis() / 500) % 2) == 0)) );
     }
 
-    void showDisplay(int i)  //+1000 to show a point, 
+    void showDisplay(int i)  //+1000 to show a point,
     {
       if (!isBlankDisplay(i))
       {
@@ -236,7 +243,7 @@ class Displays
           val = val - 1000;
           dpm = 0;
         }
-        if (val >= 0 && val <= 15)
+        if (val >= 0 && val <= 16)
         {
           digitalWrite(pinValueAM, segmentDisplay[val][0]);
           digitalWrite(pinValueBM, segmentDisplay[val][1]);
@@ -272,7 +279,7 @@ class Displays
         digitalWrite(pinDisplay1M, b);
         digitalWrite(pinDisplay0M, a);
       }
-      if (displayStatus[i] == 1 || displayStatus[i] == 7)
+      if (displayStatus[i] == 1 || displayStatus[i] == 7 || displayStatus[i] == 1016)
         delayMicroseconds(persistencyCte / 2);
       else
         delayMicroseconds(persistencyCte);
@@ -828,7 +835,7 @@ void loop ()
       Serial.print("ANSWER:");
       Serial.print(testName);
       Serial.print(" SUM");
-      Serial.println(testName[0]+testName[1]+testName[2]+testName[3]);
+      Serial.println(testName[0] + testName[1] + testName[2] + testName[3]);
     }
 
   }

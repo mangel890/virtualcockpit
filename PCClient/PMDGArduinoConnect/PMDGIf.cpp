@@ -82,11 +82,22 @@ void PMDGIf::ProcessNGXData (PMDG_NGX_Data *pS)
 		strcpy(command,"DIASM1");
 		//char valStr[5] = itoa(NGX_MCP_IASMach,(command+5),10);
 		//strcpy((command+5),"00145");
-		*(command+5) = '0';
-		*(command+6) = '0';
-		*(command+7) = '0'+((int)NGX_MCP_IASMach  /100 % 10);
-		*(command+8) = '0'+((int)NGX_MCP_IASMach /10 % 10);
-		*(command+9) = '0'+((int)NGX_MCP_IASMach % 10 );
+		if ((NGX_MCP_IASMach>0.00001 && NGX_MCP_IASMach <=1.000000))
+		{
+			*(command+5) = '0';
+			*(command+6) = '0';
+			*(command+7) = '.';
+			*(command+8) = '0'+((int)(NGX_MCP_IASMach * 10) % 10);
+			*(command+9) = '0'+((int)(NGX_MCP_IASMach *100) % 10 );
+		}
+		else
+		{
+			*(command+5) = '0';
+			*(command+6) = '0';
+			*(command+7) = '0'+((int)NGX_MCP_IASMach  /100 % 10);
+			*(command+8) = '0'+((int)NGX_MCP_IASMach /10 % 10);
+			*(command+9) = '0'+((int)NGX_MCP_IASMach % 10 );
+		}
 		SP->WriteData(command,11);
 		Logger::log(gcnew System::String(command));
 
@@ -889,7 +900,7 @@ void PMDGIf::DispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void *pContext)
 
 	default:
 		char buffer[100];
-		sprintf_s(buffer, "\n\n Unknown received data (1==Exception): %d\n",pData->dwID);
+		sprintf_s(buffer, "\n\n PMDGIf::DispatchProc: Unknown received data (1==Exception): %d\n",pData->dwID);
 		Logger::log(gcnew System::String(buffer));
 		break;
 	}

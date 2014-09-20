@@ -223,6 +223,8 @@ private: System::Void close_Click(System::Object^  sender, System::EventArgs^  e
 
 private: System::Void connect_Click(System::Object^  sender, System::EventArgs^  e) {
 
+			 MainFactory::getSerialIf()->WriteData("1",1);
+			 Sleep(2000);
 			 MainFactory::getPMDGIf()->connect();
 		 }
 private: System::Void disconnect_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -247,10 +249,10 @@ private: System::Void requestSystemState_Click(System::Object^  sender, System::
 		 }
 private: System::Void runTests_Click(System::Object^  sender, System::EventArgs^  e) {
 
-			/* for (int k=0;k<1000;k++)
+			 /* for (int k=0;k<1000;k++)
 			 {
 
-				 MainFactory::getSerialIf()->WriteData("t1234",5);
+			 MainFactory::getSerialIf()->WriteData("t1234",5);
 			 }
 			 */
 
@@ -290,37 +292,37 @@ private: System::Void runTests_Click(System::Object^  sender, System::EventArgs^
 				 serialDisplaySendTest("DHDGM",k);
 				 serialDisplaySendTest("DALTM",k);
 				 serialDisplaySendTest("DVSPM",k);
-				 			 serialLedSendTest("LMAS1",1);
-			 serialLedSendTest("LATAR",1);
-			 serialLedSendTest("LN1ID",1);
-			 serialLedSendTest("LSPID",1);
-			 serialLedSendTest("LVNID",1);
-			 serialLedSendTest("LLVLC",1);
-			 serialLedSendTest("LHDGL",1);
-			 serialLedSendTest("LLNAV",1);
-			 serialLedSendTest("LVORL",1);
-			 serialLedSendTest("LAPPS",1);
-			 serialLedSendTest("LALTH",1);
-			 serialLedSendTest("LVSPD",1);
-			 serialLedSendTest("LCMDA",1);
-			 serialLedSendTest("LCWSA",1);
+				 serialLedSendTest("LMAS1",1);
+				 serialLedSendTest("LATAR",1);
+				 serialLedSendTest("LN1ID",1);
+				 serialLedSendTest("LSPID",1);
+				 serialLedSendTest("LVNID",1);
+				 serialLedSendTest("LLVLC",1);
+				 serialLedSendTest("LHDGL",1);
+				 serialLedSendTest("LLNAV",1);
+				 serialLedSendTest("LVORL",1);
+				 serialLedSendTest("LAPPS",1);
+				 serialLedSendTest("LALTH",1);
+				 serialLedSendTest("LVSPD",1);
+				 serialLedSendTest("LCMDA",1);
+				 serialLedSendTest("LCWSA",1);
 
-			 serialLedSendTest("LMAS1",0);
-			 serialLedSendTest("LATAR",0);
-			 serialLedSendTest("LN1ID",0);
-			 serialLedSendTest("LSPID",0);
-			 serialLedSendTest("LVNID",0);
-			 serialLedSendTest("LLVLC",0);
-			 serialLedSendTest("LHDGL",0);
-			 serialLedSendTest("LLNAV",0);
-			 serialLedSendTest("LVORL",0);
-			 serialLedSendTest("LAPPS",0);
-			 serialLedSendTest("LALTH",0);
-			 serialLedSendTest("LVSPD",0);
-			 serialLedSendTest("LCMDA",0);
-			 serialLedSendTest("LCWSA",0);
+				 serialLedSendTest("LMAS1",0);
+				 serialLedSendTest("LATAR",0);
+				 serialLedSendTest("LN1ID",0);
+				 serialLedSendTest("LSPID",0);
+				 serialLedSendTest("LVNID",0);
+				 serialLedSendTest("LLVLC",0);
+				 serialLedSendTest("LHDGL",0);
+				 serialLedSendTest("LLNAV",0);
+				 serialLedSendTest("LVORL",0);
+				 serialLedSendTest("LAPPS",0);
+				 serialLedSendTest("LALTH",0);
+				 serialLedSendTest("LVSPD",0);
+				 serialLedSendTest("LCMDA",0);
+				 serialLedSendTest("LCWSA",0);
 			 }
-			 
+
 
 		 }
 
