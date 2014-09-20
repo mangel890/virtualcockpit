@@ -99,8 +99,10 @@ public:
 	bool NGX_annunCWS_B;
 	bool NGX_annunFD0;
 	bool NGX_annunFD1;
+	bool NGX_MCP_IASBlank;
 	bool NGX_MCP_VertSpeedBlank;
-	
+	bool NGX_MCP_IASUnderspeedFlash;
+	bool NGX_MCP_IASOverspeedFlash;
 
 
 	// This function is called when NGX data changes

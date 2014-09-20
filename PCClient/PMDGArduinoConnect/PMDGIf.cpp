@@ -1122,12 +1122,12 @@ void PMDGIf::loop(void *dummy)
 				!FSUIPC_Process(&dwResult)) // Process the request(s)
 				Logger::log(gcnew System::String("ERROR"));//MessageBox (NULL, L"ERROR", L"UIPChello: Link established to FSUIPC", 0) ;
 		//Logger::log("V:"+gcnew System::String((const wchar_t*) &atArm));
-		if (iASBlank != NGX_MCP_VertSpeedBlank)
+		if (iASBlank != NGX_MCP_IASBlank)
 		{
-			NGX_MCP_VertSpeedBlank = iASBlank;
+			NGX_MCP_IASBlank = iASBlank;
 			Logger::log("\MCP_IasBlank:");
 			char buffer[100];
-			sprintf_s(buffer, "%d\n", NGX_MCP_VertSpeedBlank);
+			sprintf_s(buffer, "%d\n", NGX_MCP_IASBlank);
 			Logger::log(gcnew System::String(buffer));
 
 
@@ -1138,11 +1138,99 @@ void PMDGIf::loop(void *dummy)
 			*(command+6) = '0';
 			*(command+7) = '0';
 			*(command+8) = '0';
+			*(command+9) = '0' + NGX_MCP_IASBlank;
+			SP->WriteData(command,11);
+
+			Logger::log(gcnew System::String(command));
+		}	
+
+		bool iasUnderspeed;
+		dwResult=0;
+		if (!FSUIPC_Read(0x652A, 1, &iasUnderspeed, &dwResult) ||
+			// If we wanted other reads/writes at the same time, we could put them here
+				!FSUIPC_Process(&dwResult)) // Process the request(s)
+				Logger::log(gcnew System::String("ERROR"));//MessageBox (NULL, L"ERROR", L"UIPChello: Link established to FSUIPC", 0) ;
+		//Logger::log("V:"+gcnew System::String((const wchar_t*) &atArm));
+		if (iasUnderspeed != NGX_MCP_IASUnderspeedFlash)
+		{
+			NGX_MCP_IASUnderspeedFlash = iasUnderspeed;
+			Logger::log("\MCP_IASUnderspeedFlash:");
+			char buffer[100];
+			sprintf_s(buffer, "%d\n", NGX_MCP_IASUnderspeedFlash);
+			Logger::log(gcnew System::String(buffer));
+
+
+			Serial* SP = MainFactory::getSerialIf();
+			char command[11] = {0,0,0,0,0,0,0,0,0,0,0};
+			strcpy(command,"DIASU");
+			*(command+5) = '0';
+			*(command+6) = '0';
+			*(command+7) = '0';
+			*(command+8) = '0';
+			*(command+9) = '0' + NGX_MCP_IASUnderspeedFlash;
+			SP->WriteData(command,11);
+
+			Logger::log(gcnew System::String(command));
+		}	
+
+		bool iasOverspeed;
+		dwResult=0;
+		if (!FSUIPC_Read(0x6529, 1, &iasOverspeed, &dwResult) ||
+			// If we wanted other reads/writes at the same time, we could put them here
+				!FSUIPC_Process(&dwResult)) // Process the request(s)
+				Logger::log(gcnew System::String("ERROR"));//MessageBox (NULL, L"ERROR", L"UIPChello: Link established to FSUIPC", 0) ;
+		//Logger::log("V:"+gcnew System::String((const wchar_t*) &atArm));
+		if (iasOverspeed != NGX_MCP_IASOverspeedFlash)
+		{
+			NGX_MCP_IASOverspeedFlash = iasOverspeed;
+			Logger::log("\MCP_IASUnderspeedFlash:");
+			char buffer[100];
+			sprintf_s(buffer, "%d\n", NGX_MCP_IASOverspeedFlash);
+			Logger::log(gcnew System::String(buffer));
+
+
+			Serial* SP = MainFactory::getSerialIf();
+			char command[11] = {0,0,0,0,0,0,0,0,0,0,0};
+			strcpy(command,"DIASO");
+			*(command+5) = '0';
+			*(command+6) = '0';
+			*(command+7) = '0';
+			*(command+8) = '0';
+			*(command+9) = '0' + NGX_MCP_IASOverspeedFlash;
+			SP->WriteData(command,11);
+
+			Logger::log(gcnew System::String(command));
+		}	
+
+		bool vspdBlank;
+		dwResult=0;
+		if (!FSUIPC_Read(0x6532, 1, &vspdBlank, &dwResult) ||
+			// If we wanted other reads/writes at the same time, we could put them here
+				!FSUIPC_Process(&dwResult)) // Process the request(s)
+				Logger::log(gcnew System::String("ERROR"));//MessageBox (NULL, L"ERROR", L"UIPChello: Link established to FSUIPC", 0) ;
+		//Logger::log("V:"+gcnew System::String((const wchar_t*) &atArm));
+		if (vspdBlank != NGX_MCP_VertSpeedBlank)
+		{
+			NGX_MCP_VertSpeedBlank = vspdBlank;
+			Logger::log("\MCP_vSpdBlank:");
+			char buffer[100];
+			sprintf_s(buffer, "%d\n", NGX_MCP_VertSpeedBlank);
+			Logger::log(gcnew System::String(buffer));
+
+
+			Serial* SP = MainFactory::getSerialIf();
+			char command[11] = {0,0,0,0,0,0,0,0,0,0,0};
+			strcpy(command,"DVSPB");
+			*(command+5) = '0';
+			*(command+6) = '0';
+			*(command+7) = '0';
+			*(command+8) = '0';
 			*(command+9) = '0' + NGX_MCP_VertSpeedBlank;
 			SP->WriteData(command,11);
 
 			Logger::log(gcnew System::String(command));
 		}	
+
 	} 
 
 	hr = SimConnect_Close(hSimConnect);
