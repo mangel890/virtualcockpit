@@ -557,7 +557,7 @@ void PMDGIf::slewCourse1SelectorUp()
 {
 	// Test the second control method: send an event
 	// use mouse simulation to slew a knob
-	SimConnect_TransmitClientEvent(hSimConnect, 0, EVENT_COURSE1_SELECTOR, MOUSE_FLAG_WHEEL_UP,
+	SimConnect_TransmitClientEvent(hSimConnect, 0, EVT_MCP_COURSE_SELECTOR_L, MOUSE_FLAG_WHEEL_UP,
 		SIMCONNECT_GROUP_PRIORITY_HIGHEST, SIMCONNECT_EVENT_FLAG_GROUPID_IS_PRIORITY);
 	Logger::log("\n PMDGIf:: Mandando course 1 selector up\n");
 }
@@ -566,9 +566,27 @@ void PMDGIf::slewCourse1SelectorDown()
 {
 	// Test the second control method: send an event
 	// use mouse simulation to slew a knob
-	SimConnect_TransmitClientEvent(hSimConnect, 0, EVENT_COURSE1_SELECTOR, MOUSE_FLAG_WHEEL_DOWN,
+	SimConnect_TransmitClientEvent(hSimConnect, 0, EVT_MCP_COURSE_SELECTOR_L, MOUSE_FLAG_WHEEL_DOWN,
 		SIMCONNECT_GROUP_PRIORITY_HIGHEST, SIMCONNECT_EVENT_FLAG_GROUPID_IS_PRIORITY);
 	Logger::log("\n PMDGIf:: Mandando course 1 selector down\n");
+}
+
+void PMDGIf::slewCourse2SelectorUp()
+{
+	// Test the second control method: send an event
+	// use mouse simulation to slew a knob
+	SimConnect_TransmitClientEvent(hSimConnect, 0, EVT_MCP_COURSE_SELECTOR_R, MOUSE_FLAG_WHEEL_UP,
+		SIMCONNECT_GROUP_PRIORITY_HIGHEST, SIMCONNECT_EVENT_FLAG_GROUPID_IS_PRIORITY);
+	Logger::log("\n PMDGIf:: Mandando course 2 selector up\n");
+}
+
+void PMDGIf::slewCourse2SelectorDown()
+{
+	// Test the second control method: send an event
+	// use mouse simulation to slew a knob
+	SimConnect_TransmitClientEvent(hSimConnect, 0, EVT_MCP_COURSE_SELECTOR_R, MOUSE_FLAG_WHEEL_DOWN,
+		SIMCONNECT_GROUP_PRIORITY_HIGHEST, SIMCONNECT_EVENT_FLAG_GROUPID_IS_PRIORITY);
+	Logger::log("\n PMDGIf:: Mandando course 2 selector down\n");
 }
 
 void PMDGIf::slewIASSelectorUp()
@@ -766,13 +784,14 @@ void PMDGIf::toggleCwsA()
 	Logger::log("\n PMDGIf:: Mandando CWS_A switch press\n");
 }
 
-void PMDGIf::toggleDisengage()
+
+void PMDGIf::setDisengage(bool value)
 {
 	// Test the second control method: send an event
 	// use mouse simulation to slew a knob
-	SimConnect_TransmitClientEvent(hSimConnect, 0, EVT_MCP_DISENGAGE_BAR, MOUSE_FLAG_LEFTSINGLE,
+	SimConnect_TransmitClientEvent(hSimConnect, 0, EVT_MCP_DISENGAGE_BAR, !value,
 		SIMCONNECT_GROUP_PRIORITY_HIGHEST, SIMCONNECT_EVENT_FLAG_GROUPID_IS_PRIORITY);
-	Logger::log("\n PMDGIf:: Mandando DISENGAGE switch press\n");
+	Logger::log("\n PMDGIf:: Mandando Disengage switch press\n");
 }
 
 void PMDGIf::toggleCmdB()
@@ -949,7 +968,8 @@ void PMDGIf::connect()
 		// Second method: Create event IDs for controls that we are going to operate
 		hr = SimConnect_MapClientEventToSimEvent(hSimConnect, EVENT_LOGO_LIGHT_SWITCH, "#69754");		//EVT_OH_LIGHTS_LOGO
 		//hr = SimConnect_MapClientEventToSimEvent(hSimConnect, EVENT_FLIGHT_DIRECTOR_SWITCH, "#70010");	//EVT_MCP_FD_SWITCH_L
-		hr = SimConnect_MapClientEventToSimEvent(hSimConnect, EVENT_COURSE1_SELECTOR, "#70008");		//EVT_MCP_COURSE_SELECTOR_L
+		hr = SimConnect_MapClientEventToSimEvent(hSimConnect, EVT_MCP_COURSE_SELECTOR_L, "#70008");		//EVT_MCP_COURSE_SELECTOR_L
+		hr = SimConnect_MapClientEventToSimEvent(hSimConnect, EVT_MCP_COURSE_SELECTOR_R, "#70041");		//EVT_MCP_COURSE_SELECTOR_R
 		hr = SimConnect_MapClientEventToSimEvent(hSimConnect, EVENT_IAS_SELECTOR, "#70016");		//EVT_MCP_SPEED_SELECTOR
 		hr = SimConnect_MapClientEventToSimEvent(hSimConnect, EVENT_HEADING_SELECTOR, "#70022");		//EVT_MCP_HEADING_SELECTOR
 		hr = SimConnect_MapClientEventToSimEvent(hSimConnect, EVT_MCP_ALTITUDE_SELECTOR, "#70032");

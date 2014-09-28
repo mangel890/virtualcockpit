@@ -79,6 +79,7 @@ public:
 	bool NGX_LogoLightSwitch;
 	float  NGX_MCP_IASMach;
 	unsigned short NGX_MCP_Course0;
+	unsigned short NGX_MCP_Course1;
 	unsigned short NGX_MCP_Heading;
 	unsigned short NGX_MCP_Altitude;
 	short NGX_MCP_VertSpeed;
@@ -116,6 +117,8 @@ public:
 
 	void slewCourse1SelectorUp();
 	void slewCourse1SelectorDown();
+	void slewCourse2SelectorUp();
+	void slewCourse2SelectorDown();
 	void slewIASSelectorUp();
 	void slewIASSelectorDown();
 	void slewHeadingSelectorUp();
@@ -142,7 +145,7 @@ public:
     void toggleVSpeed();
     void toggleCmdA();
     void toggleCwsA();
-    void toggleDisengage();
+    void setDisengage(bool value);
     void toggleCmdB();
     void toggleCwsB();
     void setFD1(bool value);
