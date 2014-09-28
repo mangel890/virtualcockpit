@@ -156,9 +156,13 @@ void serialCommLoop (void* dummy)
 				{
 					MainFactory::getPMDGIf()->toggleCwsA();
 				}
-				else if (tmp.compare("EVT:DISE")==0)
+				else if (tmp.compare("EVT:DIS+")==0)
 				{
-					MainFactory::getPMDGIf()->toggleDisengage();
+					MainFactory::getPMDGIf()->setDisengage(true);
+				}
+				else if (tmp.compare("EVT:DIS-")==0)
+				{
+					MainFactory::getPMDGIf()->setDisengage(false);
 				}
 				else if (tmp.compare("EVT:CMDB")==0)
 				{
@@ -176,9 +180,21 @@ void serialCommLoop (void* dummy)
 				{
 					MainFactory::getPMDGIf()->setFD1(false);
 				}
-				else if (tmp.compare("EVT:FD2S")==0)
+				else if (tmp.compare("EVT:FD2+")==0)
 				{
 					MainFactory::getPMDGIf()->setFD2(true);
+				}
+				else if (tmp.compare("EVT:FD2-")==0)
+				{
+					MainFactory::getPMDGIf()->setFD2(false);
+				}
+				else if (tmp.compare("EVT:CRS2+")==0)
+				{
+					MainFactory::getPMDGIf()->slewCourse2SelectorUp();
+				}
+				else if (tmp.compare("EVT:CRS2-")==0)
+				{
+					MainFactory::getPMDGIf()->slewCourse2SelectorDown();
 				}
 				else 
 				{

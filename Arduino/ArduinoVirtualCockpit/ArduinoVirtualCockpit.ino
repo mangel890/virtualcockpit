@@ -44,10 +44,10 @@ const int PSWVS = 33;
 const int PSWCMDA = 35;
 const int PSWCWSA = 37;
 const int PSWDISENGAGE = 39;
-//const int PSWCMDB = 16;
-//const int PSWCWSB = 17;
+const int PSWCMDB = 15;
+const int PSWCWSB = 16;
 const int PSWFD1 = 14;
-//const int PSWFD2 = 18;
+const int PSWFD2 = 17;
 
 int x, a, b, c, d, e, f;
 
@@ -510,7 +510,7 @@ RotaryReader rC(PIASA, PIASB, "IASM");
 RotaryReader rE(PHDGA, PHDGB, "HDGS");
 RotaryReader rG(PALTA, PALTB, "ALTS");
 RotaryReader rI(PVSPA, PVSPB, "VSPS");
-//RotaryReader rK(PCRS2A, PCRS2B, "CRS2");
+RotaryReader rK(PCRS2A, PCRS2B, "CRS2");
 
 class Switch
 {
@@ -602,11 +602,11 @@ Switch swAltIntv(PSWALTINTV, "ALTI");
 Switch swVS(PSWVS, "VSSW");
 Switch swCmdA(PSWCMDA, "CMDA");
 Switch swCwsA(PSWCWSA, "CWSA");
-Switch swDisengage(PSWDISENGAGE, "DISE");
-//Switch swCmdB(PSWCMDB, "CMDB");
-//Switch swCwsB(PSWCWSB, "CWSB");
+Toggle swDisengage(PSWDISENGAGE, "DIS");
+Switch swCmdB(PSWCMDB, "CMDB");
+Switch swCwsB(PSWCWSB, "CWSB");
 Toggle swFD1(PSWFD1, "FD1");
-//Switch swFD2(PSWFD2, "FD2S");
+Toggle swFD2(PSWFD2, "FD2");
 
 
 const int BUFFER_SIZE = 3000;
@@ -700,7 +700,7 @@ void loop ()
     rE.read();
     rG.read();
     rI.read();
-    //   rK.read();
+    rK.read();
   }
 
   //********************************
@@ -723,10 +723,10 @@ void loop ()
   swCmdA.read();
   swCwsA.read();
   swDisengage.read();
-  //  swCmdB.read();
-  //  swCwsB.read();
+  swCmdB.read();
+  swCwsB.read();
   swFD1.read();
-  //    swFD2.read();
+  swFD2.read();
 
   //********************************
   // Read Serial incoming events
