@@ -56,8 +56,8 @@ int persistencyCte = 100; //100 recommended
 //*********
 // Displays
 //*********
-const int numberOfDisplays = 19;
-const int segmentDisplay[17][7] = {{0, 0, 0, 0, 0, 0, 1}, //0
+const int numberOfDisplays = 23;
+const int segmentDisplay[18][7] = {{0, 0, 0, 0, 0, 0, 1}, //0
   {1, 0, 0, 1, 1, 1, 1}, //1
   {0, 0, 1, 0, 0, 1, 0}, //2
   {0, 0, 0, 0, 1, 1, 0}, //3
@@ -73,7 +73,8 @@ const int segmentDisplay[17][7] = {{0, 0, 0, 0, 0, 0, 1}, //0
   {1, 1, 1, 1, 1, 1, 0}, //13 = d
   {1, 1, 1, 1, 1, 1, 0}, //14 = E
   {1, 1, 1, 1, 1, 1, 0}, //15 = F
-  {1, 1, 1, 1, 1, 1, 1}  //16 = empty for showing just the point
+  {1, 1, 1, 1, 1, 1, 1},  //16 = empty for showing just the point
+  {1, 1, 1, 1, 1, 1, 0}, //17 = - hyphen, minus sign
 };
 class Displays
 {
@@ -187,27 +188,42 @@ class Displays
         setDisplay(10, value[4] - '0');
         setDisplay(11, value[3] - '0');
         setDisplay(12, value[2] - '0');
+        setDisplay(13, value[1] - '0');
+        setDisplay(14, value[0] - '0');
       }
       else if (strcmp(command, "VSPM") == 0)
       {
-        int pointSet = 0;
+/*        int pointSet = 0;
         if (value[1] == '-')
           pointSet = 1000;
-        setDisplay(13, (value[4] - '0') + pointSet);
-        setDisplay(14, (value[3] - '0') + pointSet);
-        setDisplay(15, (value[2] - '0') + pointSet);
+          */
+        setDisplay(15, (value[4] - '0'));
+        setDisplay(16, (value[3] - '0'));
+        setDisplay(17, (value[2] - '0'));
+        setDisplay(18, (value[1] - '0'));
+        if (value[4]=='-')
+           setDisplay(19, 17);
+        else
+           setDisplay(19, -1);
       }
       else if (strcmp(command, "VSPB") == 0)
       {
         vspdBlankM = value[4] - '0';
       }
+      else if (strcmp(command, "CRS2") == 0)
+      {
+        setDisplay(20, value[4] - '0');
+        setDisplay(21, value[3] - '0');
+        setDisplay(22, value[2] - '0');
+
+      }
     }
 
     bool isBlankDisplay(int i)
     {
-      return (displayStatus[i] == -1 ||
+      return (displayStatus[i] <= -1 ||
               (iasBlankM && (i == 3 || i == 4 || i == 5)) ||
-              (vspdBlankM && (i == 13 || i == 14 || i == 15)) ||
+              (vspdBlankM && (i == 15 || i == 16 || i == 17 || i == 18 || i == 19)) ||
               ((iasUnderspeedM || iasOverspeedM) && (i == 6) && (((millis() / 500) % 2) == 0)) );
     }
 
@@ -668,6 +684,7 @@ class SerialBuffer
 void setup () {
 
   Serial.begin (38400, SERIAL_8O2);
+//  Serial.begin (9600, SERIAL_8O2);
   pinMode(13, OUTPUT);
 
 }
