@@ -162,11 +162,11 @@ void PMDGIf::ProcessNGXData (PMDG_NGX_Data *pS)
 		strcpy(command,"DALTM");
 		//char valStr[5] = itoa(NGX_MCP_IASMach,(command+5),10);
 		//strcpy((command+5),"00145");
-		*(command+5) = '0';
-		*(command+6) = '0';
-		*(command+7) = '0'+((int)NGX_MCP_Altitude  /10000 % 10);
-		*(command+8) = '0'+((int)NGX_MCP_Altitude /1000 % 10);
-		*(command+9) = '0'+((int)NGX_MCP_Altitude/100 % 10 );
+		*(command+5) = NGX_MCP_Altitude <10000?' ':'0'+((int)NGX_MCP_Altitude  /10000 % 10);
+		*(command+6) = NGX_MCP_Altitude <1000?' ':'0'+((int)NGX_MCP_Altitude /1000 % 10);
+		*(command+7) = NGX_MCP_Altitude == 0?' ':'0'+((int)NGX_MCP_Altitude/100 % 10 );
+		*(command+8) = NGX_MCP_Altitude == 0?' ':'0';
+		*(command+9) = '0';
 		SP->WriteData(command,11);
 		Logger::log(gcnew System::String(command));
 	}
@@ -184,13 +184,37 @@ void PMDGIf::ProcessNGXData (PMDG_NGX_Data *pS)
 		strcpy(command,"DVSPM");
 		//char valStr[5] = itoa(NGX_MCP_IASMach,(command+5),10);
 		//strcpy((command+5),"00145");
-		*(command+5) = '0';
-		*(command+6) = NGX_MCP_VertSpeed >0?'+':'-';
-		*(command+7) = '0'+((int) abs(NGX_MCP_VertSpeed) /1000 % 10);
-		*(command+8) = '0'+((int) abs(NGX_MCP_VertSpeed) /100 % 10);
-		*(command+9) = '0'+((int) abs(NGX_MCP_VertSpeed) /10% 10 );
+		*(command+5) = NGX_MCP_VertSpeed <0?'-':' ';
+		*(command+6) = '0'+((int) abs(NGX_MCP_VertSpeed) /1000 % 10);
+		*(command+7) = '0'+((int) abs(NGX_MCP_VertSpeed) /100 % 10);
+		*(command+8) = '0'+((int) abs(NGX_MCP_VertSpeed) /10% 10 );
+		*(command+9) = '0';
 		SP->WriteData(command,11);
 		Logger::log(gcnew System::String(command));
+	}
+		if (pS->MCP_Course[1] != NGX_MCP_Course1)
+	{
+		NGX_MCP_Course1 = pS->MCP_Course[1];
+		Logger::log("\n PMDGIf:: FS MCP_CRS 1:");
+		char buffer[100];
+		sprintf_s(buffer, "%f\n", pS->MCP_Course[1]);
+		Logger::log(gcnew System::String(buffer));
+
+
+		Serial* SP = MainFactory::getSerialIf();
+		char command[11] = {0,0,0,0,0,0,0,0,0,0,0};
+		strcpy(command,"DCRS2");
+		//char valStr[5] = itoa(NGX_MCP_IASMach,(command+5),10);
+		//strcpy((command+5),"00145");
+		*(command+5) = '0';
+		*(command+6) = '0';
+		*(command+7) = '0'+((int)NGX_MCP_Course1  /100 % 10);
+		*(command+8) = '0'+((int)NGX_MCP_Course1 /10 % 10);
+		*(command+9) = '0'+((int)NGX_MCP_Course1 % 10 );
+		SP->WriteData(command,11);
+		Logger::log("PMDGIf:: Sending command to arduino:");
+		Logger::log(gcnew System::String(command));
+
 	}
 	/*
 	if (pS->MCP_annunATArm != NGX_annunATArm)
