@@ -763,8 +763,18 @@ W = angled&lt;p&gt;
 <variantdefs>
 </variantdefs>
 <classes>
-<class number="0" name="default" width="0" drill="0">
+<class number="0" name="default" width="0.4" drill="1">
+<clearance class="0" value="0.3"/>
 </class>
+<<<<<<< HEAD
+=======
+<class number="1" name="Ground" width="0.8" drill="1">
+<clearance class="1" value="0.4"/>
+</class>
+<class number="2" name="VCC" width="0.8" drill="1">
+<clearance class="2" value="0.4"/>
+</class>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </classes>
 <parts>
 <part name="V1" library="74ttl-din" deviceset="74*273" device="N"/>
