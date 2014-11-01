@@ -6,6 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
+<<<<<<< HEAD
 <grid distance="10" unitdist="mm" unit="mm" style="lines" multiple="10" display="no" altdistance="0.1" altunitdist="mm" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
@@ -14,6 +15,16 @@
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="yes"/>
 <layer number="20" name="Dimension" color="15" fill="1" visible="no" active="yes"/>
+=======
+<grid distance="0.003125" unitdist="mic" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.003125" altunitdist="mic" altunit="mm"/>
+<layers>
+<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 <layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
@@ -58,9 +69,15 @@
 <board>
 <plain>
 <wire x1="0" y1="0" x2="100" y2="0" width="0" layer="20"/>
+<<<<<<< HEAD
 <wire x1="100" y1="0" x2="100" y2="80" width="0" layer="20"/>
 <wire x1="100" y1="80" x2="0" y2="80" width="0" layer="20"/>
 <wire x1="0" y1="80" x2="0" y2="0" width="0" layer="20"/>
+=======
+<wire x1="100" y1="0" x2="100" y2="75" width="0" layer="20"/>
+<wire x1="100" y1="75" x2="0" y2="75" width="0" layer="20"/>
+<wire x1="0" y1="75" x2="0" y2="0" width="0" layer="20"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </plain>
 <libraries>
 <library name="con-lstb">
@@ -212,7 +229,11 @@ W = angled&lt;p&gt;
 <description>&lt;b&gt;TTL Devices with DIN Symbols&lt;/b&gt;&lt;p&gt;
 CadSoft and the author do not warrant that this library is free from error
 or will meet your specific requirements.&lt;p&gt;
+<<<<<<< HEAD
 &lt;author&gt;Created by Holger Bettenbühl, hol.bet.@rhein-main.net&lt;/author&gt;</description>
+=======
+&lt;author&gt;Created by Holger BettenbÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¼hl, hol.bet.@rhein-main.net&lt;/author&gt;</description>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 <packages>
 <package name="DIL20">
 <description>&lt;b&gt;Dual In Line Package&lt;/b&gt;</description>
@@ -280,13 +301,27 @@ or will meet your specific requirements.&lt;p&gt;
 <variantdefs>
 </variantdefs>
 <classes>
-<class number="0" name="default" width="0" drill="0">
+<class number="0" name="default" width="0.4" drill="1">
+<clearance class="0" value="0.3"/>
 </class>
+<<<<<<< HEAD
+=======
+<class number="1" name="Ground" width="0.8" drill="1">
+<clearance class="1" value="0.4"/>
+</class>
+<class number="2" name="VCC" width="0.8" drill="1">
+<clearance class="2" value="0.4"/>
+</class>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </classes>
 <designrules name="default">
 <description language="de">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
 &lt;p&gt;
+<<<<<<< HEAD
 Die Standard-Design-Rules sind so gewählt, dass sie für 
+=======
+Die Standard-Design-Rules sind so gewÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¤hlt, dass sie fÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¼r 
+>>>>>>> 31be72e... Possible routing for two sides and full board
 die meisten Anwendungen passen. Sollte ihre Platine 
 besondere Anforderungen haben, treffen Sie die erforderlichen
 Einstellungen hier und speichern die Design Rules unter 
@@ -463,6 +498,7 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
+<<<<<<< HEAD
 <element name="SV1" library="con-lstb" package="MA08-1" value="" x="10.16" y="45.72" rot="R270">
 <attribute name="OC_NEWARK" value="unknown" x="10.16" y="45.72" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="" x="10.16" y="45.72" size="1.778" layer="27" rot="R270" display="off"/>
@@ -527,10 +563,84 @@ design rules under a new name.</description>
 <element name="V6" library="74ttl-din" package="DIL20" value="74273N" x="53.34" y="12.7" rot="R180"/>
 <element name="V7" library="74ttl-din" package="DIL20" value="74273N" x="22.86" y="12.7" rot="R180"/>
 <element name="V8" library="74ttl-din" package="DIL16" value="74238N" x="35.56" y="40.64" rot="R270"/>
+=======
+<element name="SV11" library="con-lstb" package="MA08-1" value="" x="34.16" y="37.72" rot="R270">
+<attribute name="OC_NEWARK" value="unknown" x="34.16" y="37.72" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MPN" value="" x="34.16" y="37.72" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="" x="34.16" y="37.72" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="OC_FARNELL" value="unknown" x="34.16" y="37.72" size="1.778" layer="27" rot="R270" display="off"/>
+</element>
+<element name="SV8" library="con-lstb" package="MA08-1" value="" x="3.81" y="22.98" rot="R90">
+<attribute name="OC_NEWARK" value="unknown" x="3.81" y="22.98" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="" x="3.81" y="22.98" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="" x="3.81" y="22.98" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="OC_FARNELL" value="unknown" x="3.81" y="22.98" size="1.778" layer="27" rot="R90" display="off"/>
+</element>
+<element name="SV9" library="pinhead" package="1X02" value="" x="5.08" y="4.43"/>
+<element name="SV12" library="con-lstb" package="MA03-1" value="" x="54.16" y="39.21" rot="R90">
+<attribute name="OC_NEWARK" value="unknown" x="54.16" y="39.21" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="" x="54.16" y="39.21" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="" x="54.16" y="39.21" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="OC_FARNELL" value="unknown" x="54.16" y="39.21" size="1.778" layer="27" rot="R90" display="off"/>
+</element>
+<element name="SV4" library="con-lstb" package="MA08-1" value="" x="95.97" y="48.34" rot="R270">
+<attribute name="OC_NEWARK" value="unknown" x="95.97" y="48.34" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MPN" value="" x="95.97" y="48.34" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="" x="95.97" y="48.34" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="OC_FARNELL" value="unknown" x="95.97" y="48.34" size="1.778" layer="27" rot="R270" display="off"/>
+</element>
+<element name="SV1" library="con-lstb" package="MA08-1" value="" x="4.07" y="45.75" rot="R90">
+<attribute name="OC_NEWARK" value="unknown" x="4.07" y="45.75" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="" x="4.07" y="45.75" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="" x="4.07" y="45.75" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="OC_FARNELL" value="unknown" x="4.07" y="45.75" size="1.778" layer="27" rot="R90" display="off"/>
+</element>
+<element name="SV2" library="con-lstb" package="MA08-1" value="" x="35.07" y="69.93">
+<attribute name="OC_NEWARK" value="unknown" x="35.07" y="69.93" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="" x="35.07" y="69.93" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="" x="35.07" y="69.93" size="1.778" layer="27" display="off"/>
+<attribute name="OC_FARNELL" value="unknown" x="35.07" y="69.93" size="1.778" layer="27" display="off"/>
+</element>
+<element name="SV3" library="con-lstb" package="MA08-1" value="" x="60.39" y="69.93">
+<attribute name="OC_NEWARK" value="unknown" x="60.39" y="69.93" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="" x="60.39" y="69.93" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="" x="60.39" y="69.93" size="1.778" layer="27" display="off"/>
+<attribute name="OC_FARNELL" value="unknown" x="60.39" y="69.93" size="1.778" layer="27" display="off"/>
+</element>
+<element name="SV10" library="pinhead" package="1X02" value="" x="5.08" y="7.24"/>
+<element name="SV6" library="con-lstb" package="MA08-1" value="" x="64.66" y="4.81" rot="R180">
+<attribute name="OC_NEWARK" value="unknown" x="64.66" y="4.81" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MPN" value="" x="64.66" y="4.81" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="" x="64.66" y="4.81" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="OC_FARNELL" value="unknown" x="64.66" y="4.81" size="1.778" layer="27" rot="R180" display="off"/>
+</element>
+<element name="SV7" library="con-lstb" package="MA08-1" value="" x="37.34" y="4.81" rot="R180">
+<attribute name="OC_NEWARK" value="unknown" x="37.34" y="4.81" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MPN" value="" x="37.34" y="4.81" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="" x="37.34" y="4.81" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="OC_FARNELL" value="unknown" x="37.34" y="4.81" size="1.778" layer="27" rot="R180" display="off"/>
+</element>
+<element name="V1" library="74ttl-din" package="DIL20" value="74273N" x="13.96" y="58.86" rot="R90"/>
+<element name="V2" library="74ttl-din" package="DIL20" value="74273N" x="36.07" y="59.04"/>
+<element name="V3" library="74ttl-din" package="DIL20" value="74273N" x="65.28" y="59.04"/>
+<element name="V4" library="74ttl-din" package="DIL20" value="74273N" x="86.53" y="57.97" rot="R270"/>
+<element name="V6" library="74ttl-din" package="DIL20" value="74273N" x="63.55" y="15.7" rot="R180"/>
+<element name="V7" library="74ttl-din" package="DIL20" value="74273N" x="35.34" y="15.7" rot="R180"/>
+<element name="V8" library="74ttl-din" package="DIL20" value="74273N" x="13.7" y="24.14" rot="R90"/>
+<element name="V9" library="74ttl-din" package="DIL16" value="74238N" x="66.56" y="36.64" rot="R270"/>
+<element name="SV5" library="con-lstb" package="MA08-1" value="" x="96" y="23" rot="R270">
+<attribute name="OC_NEWARK" value="unknown" x="96" y="23" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MPN" value="" x="96" y="23" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="" x="96" y="23" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="OC_FARNELL" value="unknown" x="96" y="23" size="1.778" layer="27" rot="R270" display="off"/>
+</element>
+<element name="V5" library="74ttl-din" package="DIL20" value="74273N" x="86.7" y="16.7" rot="R270"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </elements>
 <signals>
 <signal name="N$4">
 <contactref element="V2" pad="11"/>
+<<<<<<< HEAD
 <contactref element="V8" pad="13"/>
 <wire x1="40.005" y1="41.91" x2="39.37" y2="41.91" width="0.254" layer="1"/>
 <wire x1="44.45" y1="46.355" x2="40.005" y2="41.91" width="0.254" layer="1"/>
@@ -565,6 +675,25 @@ design rules under a new name.</description>
 <contactref element="SV7" pad="1"/>
 <contactref element="V8" pad="4"/>
 <contactref element="V8" pad="5"/>
+=======
+<contactref element="V9" pad="14"/>
+<wire x1="70.37" y1="40.45" x2="47.5" y2="62.85" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$3">
+<contactref element="V1" pad="11"/>
+<contactref element="V9" pad="15"/>
+<wire x1="10.15" y1="70.29" x2="70.37" y2="42.99" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$1">
+<contactref element="V3" pad="11"/>
+<contactref element="V9" pad="13"/>
+<wire x1="70.37" y1="37.91" x2="76.71" y2="62.85" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="GND" class="1">
+<contactref element="SV10" pad="1"/>
+<contactref element="V9" pad="4"/>
+<contactref element="V9" pad="5"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 <contactref element="V1" pad="10"/>
 <contactref element="V2" pad="10"/>
 <contactref element="V3" pad="10"/>
@@ -572,6 +701,7 @@ design rules under a new name.</description>
 <contactref element="V5" pad="10"/>
 <contactref element="V6" pad="10"/>
 <contactref element="V7" pad="10"/>
+<<<<<<< HEAD
 <contactref element="V8" pad="8"/>
 <contactref element="SV11" pad="1"/>
 <wire x1="43.815" y1="18.415" x2="41.91" y2="16.51" width="0.254" layer="16"/>
@@ -684,6 +814,76 @@ design rules under a new name.</description>
 </signal>
 <signal name="VCC">
 <contactref element="SV7" pad="2"/>
+=======
+<contactref element="V8" pad="10"/>
+<contactref element="V9" pad="8"/>
+<polygon width="0.4064" layer="16" isolate="1.016" orphans="yes">
+<vertex x="0" y="0"/>
+<vertex x="0" y="75"/>
+<vertex x="100" y="75"/>
+<vertex x="100" y="0"/>
+</polygon>
+<wire x1="82.72" y1="46.54" x2="76.71" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="62.75" y1="37.91" x2="82.72" y2="46.54" width="0" layer="19" extent="1-1"/>
+<wire x1="62.75" y1="35.37" x2="62.75" y2="37.91" width="0" layer="19" extent="1-1"/>
+<wire x1="62.75" y1="27.75" x2="62.75" y2="35.37" width="0" layer="19" extent="1-1"/>
+<wire x1="52.12" y1="19.51" x2="62.75" y2="27.75" width="0" layer="19" extent="1-1"/>
+<wire x1="47.5" y1="55.23" x2="62.75" y2="37.91" width="0" layer="19" extent="1-1"/>
+<wire x1="23.91" y1="19.51" x2="52.12" y2="19.51" width="0" layer="19" extent="1-1"/>
+<wire x1="17.51" y1="35.57" x2="23.91" y2="19.51" width="0" layer="19" extent="1-1"/>
+<wire x1="3.81" y1="7.24" x2="23.91" y2="19.51" width="0" layer="19" extent="1-1"/>
+<wire x1="3.81" y1="4.43" x2="3.81" y2="7.24" width="0" layer="19" extent="1-1"/>
+<wire x1="82.89" y1="5.27" x2="62.75" y2="27.75" width="0" layer="19" extent="1-1"/>
+<wire x1="17.77" y1="70.29" x2="47.5" y2="55.23" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$2">
+<contactref element="V1" pad="2"/>
+<contactref element="SV1" pad="1"/>
+<wire x1="4.07" y1="36.86" x2="17.77" y2="49.97" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$5">
+<contactref element="V1" pad="5"/>
+<contactref element="SV1" pad="2"/>
+<wire x1="4.07" y1="39.4" x2="17.77" y2="57.59" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$6">
+<contactref element="V1" pad="6"/>
+<contactref element="SV1" pad="3"/>
+<wire x1="4.07" y1="41.94" x2="17.77" y2="60.13" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$7">
+<contactref element="V1" pad="9"/>
+<contactref element="SV1" pad="4"/>
+<wire x1="4.07" y1="44.48" x2="17.77" y2="67.75" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$8">
+<contactref element="V1" pad="12"/>
+<contactref element="SV1" pad="5"/>
+<wire x1="4.07" y1="47.02" x2="10.15" y2="67.75" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$9">
+<contactref element="V1" pad="15"/>
+<contactref element="SV1" pad="6"/>
+<wire x1="4.07" y1="49.56" x2="10.15" y2="60.13" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$10">
+<contactref element="V1" pad="16"/>
+<contactref element="SV1" pad="7"/>
+<wire x1="4.07" y1="52.1" x2="10.15" y2="57.59" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$11">
+<contactref element="V1" pad="19"/>
+<contactref element="SV1" pad="8"/>
+<wire x1="4.07" y1="54.64" x2="10.15" y2="49.97" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$20">
+<contactref element="SV12" pad="3"/>
+<contactref element="V9" pad="1"/>
+<wire x1="54.16" y1="41.75" x2="62.75" y2="45.53" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="VCC" class="2">
+<contactref element="SV10" pad="2"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 <contactref element="V1" pad="20"/>
 <contactref element="V8" pad="6"/>
 <contactref element="V2" pad="20"/>
@@ -701,6 +901,7 @@ design rules under a new name.</description>
 <contactref element="V5" pad="1"/>
 <contactref element="V6" pad="1"/>
 <contactref element="V7" pad="1"/>
+<<<<<<< HEAD
 <wire x1="93.98" y1="16.51" x2="93.98" y2="8.89" width="0.254" layer="1"/>
 <wire x1="78.74" y1="50.8" x2="71.12" y2="50.8" width="0.254" layer="16"/>
 <wire x1="69.85" y1="69.85" x2="69.85" y2="62.23" width="0.254" layer="1"/>
@@ -766,10 +967,51 @@ design rules under a new name.</description>
 <wire x1="46.99" y1="72.7075" x2="46.99" y2="68.8975" width="0.254" layer="1"/>
 <wire x1="45.72" y1="73.9775" x2="46.99" y2="72.7075" width="0.254" layer="1"/>
 <wire x1="45.72" y1="74.93" x2="45.72" y2="73.9775" width="0.254" layer="1"/>
+=======
+<contactref element="V8" pad="1"/>
+<contactref element="V5" pad="1"/>
+<contactref element="V5" pad="20"/>
+<polygon width="0.4064" layer="1" isolate="1.016" orphans="yes">
+<vertex x="0" y="0"/>
+<vertex x="0" y="75"/>
+<vertex x="100" y="75"/>
+<vertex x="100" y="0"/>
+</polygon>
+<wire x1="82.72" y1="69.4" x2="90.34" y2="69.4" width="0" layer="19" extent="1-1"/>
+<wire x1="70.37" y1="45.53" x2="82.72" y2="69.4" width="0" layer="19" extent="1-1"/>
+<wire x1="62.75" y1="32.83" x2="70.37" y2="45.53" width="0" layer="19" extent="1-1"/>
+<wire x1="74.98" y1="19.51" x2="62.75" y2="32.83" width="0" layer="19" extent="1-1"/>
+<wire x1="74.98" y1="11.89" x2="74.98" y2="19.51" width="0" layer="19" extent="1-1"/>
+<wire x1="82.89" y1="28.13" x2="74.98" y2="19.51" width="0" layer="19" extent="1-1"/>
+<wire x1="90.51" y1="28.13" x2="82.89" y2="28.13" width="0" layer="19" extent="1-1"/>
+<wire x1="53.85" y1="55.23" x2="70.37" y2="45.53" width="0" layer="19" extent="1-1"/>
+<wire x1="53.85" y1="62.85" x2="53.85" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="46.77" y1="19.51" x2="62.75" y2="32.83" width="0" layer="19" extent="1-1"/>
+<wire x1="46.77" y1="11.89" x2="46.77" y2="19.51" width="0" layer="19" extent="1-1"/>
+<wire x1="24.64" y1="62.85" x2="53.85" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="24.64" y1="55.23" x2="24.64" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="17.77" y1="47.43" x2="24.64" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="10.15" y1="47.43" x2="17.77" y2="47.43" width="0" layer="19" extent="1-1"/>
+<wire x1="17.51" y1="12.71" x2="46.77" y2="11.89" width="0" layer="19" extent="1-1"/>
+<wire x1="9.89" y1="12.71" x2="17.51" y2="12.71" width="0" layer="19" extent="1-1"/>
+<wire x1="6.35" y1="7.24" x2="9.89" y2="12.71" width="0" layer="19" extent="1-1"/>
+<wire x1="6.35" y1="4.43" x2="6.35" y2="7.24" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$12">
+<contactref element="V2" pad="2"/>
+<contactref element="SV2" pad="1"/>
+<wire x1="27.18" y1="55.23" x2="26.18" y2="69.93" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$16">
+<contactref element="V2" pad="5"/>
+<contactref element="SV2" pad="2"/>
+<wire x1="34.8" y1="55.23" x2="28.72" y2="69.93" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$17">
 <contactref element="SV5" pad="3"/>
 <contactref element="V2" pad="6"/>
+<<<<<<< HEAD
 <wire x1="53.34" y1="65.0875" x2="53.34" y2="62.23" width="0.254" layer="1"/>
 <wire x1="49.53" y1="68.8975" x2="53.34" y2="65.0875" width="0.254" layer="1"/>
 <wire x1="49.53" y1="73.66" x2="49.53" y2="68.8975" width="0.254" layer="1"/>
@@ -794,10 +1036,24 @@ design rules under a new name.</description>
 <wire x1="56.515" y1="76.835" x2="57.15" y2="76.2" width="0.254" layer="1"/>
 <wire x1="55.245" y1="76.835" x2="56.515" y2="76.835" width="0.254" layer="1"/>
 <wire x1="53.34" y1="74.93" x2="55.245" y2="76.835" width="0.254" layer="1"/>
+=======
+<wire x1="37.34" y1="55.23" x2="31.26" y2="69.93" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$18">
+<contactref element="V2" pad="9"/>
+<contactref element="SV2" pad="4"/>
+<wire x1="44.96" y1="55.23" x2="33.8" y2="69.93" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$19">
+<contactref element="V2" pad="12"/>
+<contactref element="SV2" pad="5"/>
+<wire x1="36.34" y1="69.93" x2="44.96" y2="62.85" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$23">
 <contactref element="SV5" pad="6"/>
 <contactref element="V2" pad="15"/>
+<<<<<<< HEAD
 <wire x1="53.34" y1="72.39" x2="53.34" y2="69.85" width="0.254" layer="1"/>
 <wire x1="55.88" y1="74.93" x2="53.34" y2="72.39" width="0.254" layer="1"/>
 </signal>
@@ -811,17 +1067,30 @@ design rules under a new name.</description>
 <wire x1="56.8325" y1="77.47" x2="53.34" y2="77.47" width="0.254" layer="1"/>
 <wire x1="58.42" y1="75.8825" x2="56.8325" y2="77.47" width="0.254" layer="1"/>
 <wire x1="58.42" y1="74.93" x2="58.42" y2="75.8825" width="0.254" layer="1"/>
+=======
+<wire x1="37.34" y1="62.85" x2="38.88" y2="69.93" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$24">
+<contactref element="V2" pad="16"/>
+<contactref element="SV2" pad="7"/>
+<wire x1="34.8" y1="62.85" x2="41.42" y2="69.93" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$25">
 <contactref element="SV5" pad="8"/>
 <contactref element="V2" pad="19"/>
+<<<<<<< HEAD
 <wire x1="43.18" y1="73.025" x2="43.18" y2="69.85" width="0.254" layer="16"/>
 <wire x1="59.055" y1="73.025" x2="43.18" y2="73.025" width="0.254" layer="16"/>
 <wire x1="60.96" y1="74.93" x2="59.055" y2="73.025" width="0.254" layer="16"/>
+=======
+<wire x1="27.18" y1="62.85" x2="43.96" y2="69.93" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$30">
 <contactref element="SV6" pad="1"/>
 <contactref element="V3" pad="2"/>
+<<<<<<< HEAD
 <wire x1="72.39" y1="67.6275" x2="72.39" y2="62.23" width="0.254" layer="1"/>
 <wire x1="71.12" y1="68.8975" x2="72.39" y2="67.6275" width="0.254" layer="1"/>
 <wire x1="71.12" y1="72.39" x2="71.12" y2="68.8975" width="0.254" layer="1"/>
@@ -831,61 +1100,89 @@ design rules under a new name.</description>
 <wire x1="66.04" y1="77.7875" x2="68.2625" y2="77.7875" width="0.254" layer="1"/>
 <wire x1="63.5" y1="75.2475" x2="66.04" y2="77.7875" width="0.254" layer="1"/>
 <wire x1="63.5" y1="74.93" x2="63.5" y2="75.2475" width="0.254" layer="1"/>
+=======
+<wire x1="56.39" y1="55.23" x2="51.5" y2="69.93" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$31">
 <contactref element="SV6" pad="2"/>
 <contactref element="V3" pad="5"/>
+<<<<<<< HEAD
 <wire x1="77.7875" y1="64.4525" x2="80.01" y2="62.23" width="0.254" layer="16"/>
 <wire x1="68.8975" y1="64.4525" x2="77.7875" y2="64.4525" width="0.254" layer="16"/>
 <wire x1="68.8975" y1="68.58" x2="68.8975" y2="64.4525" width="0.254" layer="1"/>
 <wire x1="66.04" y1="71.4375" x2="68.8975" y2="68.58" width="0.254" layer="1"/>
 <wire x1="66.04" y1="74.93" x2="66.04" y2="71.4375" width="0.254" layer="1"/>
 <via x="68.8975" y="64.4525" extent="1-16" drill="0.6096"/>
+=======
+<wire x1="64.01" y1="55.23" x2="54.04" y2="69.93" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$32">
 <contactref element="SV6" pad="3"/>
 <contactref element="V3" pad="6"/>
+<<<<<<< HEAD
 <wire x1="76.2" y1="68.58" x2="82.55" y2="62.23" width="0.254" layer="1"/>
 <wire x1="76.2" y1="71.4375" x2="76.2" y2="68.58" width="0.254" layer="1"/>
 <wire x1="74.6125" y1="73.025" x2="76.2" y2="71.4375" width="0.254" layer="16"/>
 <wire x1="70.485" y1="73.025" x2="74.6125" y2="73.025" width="0.254" layer="16"/>
 <wire x1="68.58" y1="74.93" x2="70.485" y2="73.025" width="0.254" layer="16"/>
 <via x="76.2" y="71.4375" extent="1-16" drill="0.6096"/>
+=======
+<wire x1="66.55" y1="55.23" x2="56.58" y2="69.93" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$33">
 <contactref element="SV6" pad="4"/>
 <contactref element="V3" pad="9"/>
+<<<<<<< HEAD
 <wire x1="90.17" y1="67.6275" x2="90.17" y2="62.23" width="0.254" layer="1"/>
 <wire x1="91.44" y1="68.8975" x2="90.17" y2="67.6275" width="0.254" layer="1"/>
 <wire x1="91.44" y1="70.8025" x2="91.44" y2="68.8975" width="0.254" layer="1"/>
 <wire x1="84.1375" y1="78.105" x2="91.44" y2="70.8025" width="0.254" layer="1"/>
 <wire x1="74.295" y1="78.105" x2="84.1375" y2="78.105" width="0.254" layer="1"/>
 <wire x1="71.12" y1="74.93" x2="74.295" y2="78.105" width="0.254" layer="1"/>
+=======
+<wire x1="74.17" y1="55.23" x2="59.12" y2="69.93" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$34">
 <contactref element="SV6" pad="5"/>
 <contactref element="V3" pad="12"/>
+<<<<<<< HEAD
 <wire x1="82.55" y1="77.47" x2="90.17" y2="69.85" width="0.254" layer="1"/>
 <wire x1="75.2475" y1="77.47" x2="82.55" y2="77.47" width="0.254" layer="1"/>
 <wire x1="73.66" y1="75.8825" x2="75.2475" y2="77.47" width="0.254" layer="1"/>
 <wire x1="73.66" y1="74.93" x2="73.66" y2="75.8825" width="0.254" layer="1"/>
+=======
+<wire x1="61.66" y1="69.93" x2="74.17" y2="62.85" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$35">
 <contactref element="SV6" pad="6"/>
 <contactref element="V3" pad="15"/>
+<<<<<<< HEAD
 <wire x1="79.375" y1="73.025" x2="82.55" y2="69.85" width="0.254" layer="1"/>
 <wire x1="78.105" y1="73.025" x2="79.375" y2="73.025" width="0.254" layer="1"/>
 <wire x1="76.2" y1="74.93" x2="78.105" y2="73.025" width="0.254" layer="1"/>
+=======
+<wire x1="66.55" y1="62.85" x2="64.2" y2="69.93" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$36">
 <contactref element="SV6" pad="7"/>
 <contactref element="V3" pad="16"/>
+<<<<<<< HEAD
 <wire x1="80.01" y1="74.93" x2="80.01" y2="69.85" width="0.254" layer="16"/>
 <wire x1="78.74" y1="74.93" x2="80.01" y2="74.93" width="0.254" layer="16"/>
+=======
+<wire x1="64.01" y1="62.85" x2="66.74" y2="69.93" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$37">
 <contactref element="SV6" pad="8"/>
 <contactref element="V3" pad="19"/>
+<<<<<<< HEAD
 <wire x1="72.39" y1="71.12" x2="72.39" y2="69.85" width="0.254" layer="1"/>
 <wire x1="74.93" y1="73.66" x2="72.39" y2="71.12" width="0.254" layer="1"/>
 <wire x1="74.93" y1="76.2" x2="74.93" y2="73.66" width="0.254" layer="1"/>
@@ -899,28 +1196,49 @@ design rules under a new name.</description>
 <wire x1="49.53" y1="26.67" x2="39.37" y2="36.83" width="0.254" layer="16"/>
 <wire x1="77.47" y1="26.67" x2="49.53" y2="26.67" width="0.254" layer="16"/>
 <wire x1="78.74" y1="27.94" x2="77.47" y2="26.67" width="0.254" layer="16"/>
+=======
+<wire x1="56.39" y1="62.85" x2="69.28" y2="69.93" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$26">
+<contactref element="V4" pad="11"/>
+<contactref element="V9" pad="12"/>
+<wire x1="70.37" y1="35.37" x2="90.34" y2="46.54" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$38">
 <contactref element="SV3" pad="1"/>
 <contactref element="V4" pad="2"/>
+<<<<<<< HEAD
 <wire x1="72.39" y1="49.53" x2="71.12" y2="48.26" width="0.254" layer="16"/>
 <wire x1="90.17" y1="49.53" x2="72.39" y2="49.53" width="0.254" layer="16"/>
+=======
+<wire x1="82.72" y1="66.86" x2="95.97" y2="57.23" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$39">
 <contactref element="SV3" pad="2"/>
 <contactref element="V4" pad="5"/>
+<<<<<<< HEAD
 <wire x1="77.47" y1="46.99" x2="71.12" y2="40.64" width="0.254" layer="16"/>
 <wire x1="90.17" y1="46.99" x2="77.47" y2="46.99" width="0.254" layer="16"/>
+=======
+<wire x1="82.72" y1="59.24" x2="95.97" y2="54.69" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$40">
 <contactref element="SV3" pad="3"/>
 <contactref element="V4" pad="6"/>
+<<<<<<< HEAD
 <wire x1="77.47" y1="44.45" x2="71.12" y2="38.1" width="0.254" layer="16"/>
 <wire x1="90.17" y1="44.45" x2="77.47" y2="44.45" width="0.254" layer="16"/>
+=======
+<wire x1="82.72" y1="56.7" x2="95.97" y2="52.15" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$41">
 <contactref element="SV3" pad="4"/>
 <contactref element="V4" pad="9"/>
+<<<<<<< HEAD
 <wire x1="71.755" y1="31.115" x2="71.12" y2="30.48" width="0.254" layer="16"/>
 <wire x1="77.1525" y1="31.115" x2="71.755" y2="31.115" width="0.254" layer="16"/>
 <wire x1="77.7875" y1="31.75" x2="77.1525" y2="31.115" width="0.254" layer="16"/>
@@ -930,32 +1248,48 @@ design rules under a new name.</description>
 <wire x1="92.71" y1="33.9725" x2="91.7575" y2="33.02" width="0.254" layer="16"/>
 <wire x1="92.71" y1="41.91" x2="92.71" y2="33.9725" width="0.254" layer="16"/>
 <wire x1="90.17" y1="41.91" x2="92.71" y2="41.91" width="0.254" layer="16"/>
+=======
+<wire x1="82.72" y1="49.08" x2="95.97" y2="49.61" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$42">
 <contactref element="SV3" pad="5"/>
 <contactref element="V4" pad="12"/>
+<<<<<<< HEAD
 <wire x1="81.28" y1="30.48" x2="78.74" y2="30.48" width="0.254" layer="1"/>
 <wire x1="90.17" y1="39.37" x2="81.28" y2="30.48" width="0.254" layer="1"/>
+=======
+<wire x1="90.34" y1="49.08" x2="95.97" y2="47.07" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$43">
 <contactref element="SV3" pad="6"/>
 <contactref element="V4" pad="15"/>
+<<<<<<< HEAD
 <wire x1="79.375" y1="37.465" x2="78.74" y2="38.1" width="0.254" layer="16"/>
 <wire x1="89.535" y1="37.465" x2="79.375" y2="37.465" width="0.254" layer="16"/>
 <wire x1="90.17" y1="36.83" x2="89.535" y2="37.465" width="0.254" layer="16"/>
+=======
+<wire x1="95.97" y1="44.53" x2="90.34" y2="56.7" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$44">
 <contactref element="SV3" pad="7"/>
 <contactref element="V4" pad="16"/>
+<<<<<<< HEAD
 <wire x1="81.28" y1="38.1" x2="78.74" y2="40.64" width="0.254" layer="16"/>
 <wire x1="91.44" y1="38.1" x2="81.28" y2="38.1" width="0.254" layer="16"/>
 <wire x1="92.075" y1="37.465" x2="91.44" y2="38.1" width="0.254" layer="16"/>
 <wire x1="92.075" y1="34.29" x2="92.075" y2="37.465" width="0.254" layer="16"/>
 <wire x1="90.17" y1="34.29" x2="92.075" y2="34.29" width="0.254" layer="16"/>
+=======
+<wire x1="95.97" y1="41.99" x2="90.34" y2="59.24" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$45">
 <contactref element="SV3" pad="8"/>
 <contactref element="V4" pad="19"/>
+<<<<<<< HEAD
 <wire x1="82.8675" y1="44.1325" x2="78.74" y2="48.26" width="0.254" layer="1"/>
 <wire x1="82.8675" y1="43.18" x2="82.8675" y2="44.1325" width="0.254" layer="1"/>
 <wire x1="85.4075" y1="40.64" x2="82.8675" y2="43.18" width="0.254" layer="1"/>
@@ -979,6 +1313,19 @@ design rules under a new name.</description>
 <wire x1="41.91" y1="14.2875" x2="41.91" y2="8.89" width="0.254" layer="1"/>
 <wire x1="39.37" y1="16.8275" x2="41.91" y2="14.2875" width="0.254" layer="1"/>
 <wire x1="39.37" y1="31.75" x2="39.37" y2="16.8275" width="0.254" layer="1"/>
+=======
+<wire x1="95.97" y1="39.45" x2="90.34" y2="66.86" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$27">
+<contactref element="V5" pad="11"/>
+<contactref element="V9" pad="11"/>
+<wire x1="90.51" y1="5.27" x2="70.37" y2="32.83" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$28">
+<contactref element="V6" pad="11"/>
+<contactref element="V9" pad="10"/>
+<wire x1="52.12" y1="11.89" x2="70.37" y2="30.29" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$29">
 <contactref element="V5" pad="4"/>
@@ -989,6 +1336,7 @@ design rules under a new name.</description>
 <contactref element="V2" pad="4"/>
 <contactref element="V3" pad="4"/>
 <contactref element="V4" pad="4"/>
+<<<<<<< HEAD
 <wire x1="26.67" y1="22.86" x2="26.67" y2="19.3675" width="0.254" layer="1"/>
 <wire x1="26.67" y1="19.3675" x2="26.67" y2="16.51" width="0.254" layer="1"/>
 <wire x1="10.16" y1="39.37" x2="12.065" y2="37.465" width="0.254" layer="1"/>
@@ -1027,6 +1375,17 @@ design rules under a new name.</description>
 <via x="77.47" y="56.8325" extent="1-16" drill="0.6096"/>
 <via x="66.675" y="19.05" extent="1-16" drill="0.6096"/>
 <via x="29.5275" y="19.3675" extent="1-16" drill="0.6096"/>
+=======
+<contactref element="V5" pad="4"/>
+<wire x1="61.47" y1="55.23" x2="82.72" y2="61.78" width="0" layer="19" extent="1-1"/>
+<wire x1="32.26" y1="55.23" x2="61.47" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="17.77" y1="55.05" x2="32.26" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="34.16" y1="31.37" x2="32.26" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="39.15" y1="19.51" x2="34.16" y2="31.37" width="0" layer="19" extent="1-1"/>
+<wire x1="17.51" y1="20.33" x2="34.16" y2="31.37" width="0" layer="19" extent="1-1"/>
+<wire x1="67.36" y1="19.51" x2="39.15" y2="19.51" width="0" layer="19" extent="1-1"/>
+<wire x1="82.89" y1="20.51" x2="67.36" y2="19.51" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$46">
 <contactref element="V5" pad="7"/>
@@ -1037,6 +1396,7 @@ design rules under a new name.</description>
 <contactref element="V2" pad="7"/>
 <contactref element="V3" pad="7"/>
 <contactref element="V4" pad="7"/>
+<<<<<<< HEAD
 <wire x1="19.05" y1="25.4" x2="19.05" y2="16.51" width="0.254" layer="1"/>
 <wire x1="8.255" y1="36.195" x2="19.05" y2="25.4" width="0.254" layer="1"/>
 <wire x1="8.255" y1="40.005" x2="8.255" y2="36.195" width="0.254" layer="1"/>
@@ -1079,6 +1439,17 @@ design rules under a new name.</description>
 <via x="49.53" y="27.94" extent="1-16" drill="0.6096"/>
 <via x="67.6275" y="35.56" extent="1-16" drill="0.6096"/>
 <via x="70.1675" y="58.7375" extent="1-16" drill="0.6096"/>
+=======
+<contactref element="V5" pad="7"/>
+<wire x1="69.09" y1="55.23" x2="82.72" y2="54.16" width="0" layer="19" extent="1-1"/>
+<wire x1="39.88" y1="55.23" x2="69.09" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="34.16" y1="33.91" x2="39.88" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="31.53" y1="19.51" x2="34.16" y2="33.91" width="0" layer="19" extent="1-1"/>
+<wire x1="17.51" y1="27.95" x2="31.53" y2="19.51" width="0" layer="19" extent="1-1"/>
+<wire x1="17.77" y1="62.67" x2="39.88" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="59.74" y1="19.51" x2="31.53" y2="19.51" width="0" layer="19" extent="1-1"/>
+<wire x1="82.89" y1="12.89" x2="59.74" y2="19.51" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="N$47">
 <contactref element="V5" pad="8"/>
@@ -1089,6 +1460,7 @@ design rules under a new name.</description>
 <contactref element="V2" pad="8"/>
 <contactref element="V3" pad="8"/>
 <contactref element="V4" pad="8"/>
+<<<<<<< HEAD
 <wire x1="11.43" y1="44.45" x2="29.21" y2="62.23" width="0.254" layer="1"/>
 <wire x1="10.16" y1="44.45" x2="11.43" y2="44.45" width="0.254" layer="1"/>
 <wire x1="61.2775" y1="59.3725" x2="58.42" y2="62.23" width="0.254" layer="1"/>
@@ -1113,6 +1485,17 @@ design rules under a new name.</description>
 <wire x1="13.97" y1="48.26" x2="10.16" y2="44.45" width="0.254" layer="16"/>
 <wire x1="61.2775" y1="48.26" x2="13.97" y2="48.26" width="0.254" layer="16"/>
 <via x="61.2775" y="59.3725" extent="1-16" drill="0.6096"/>
+=======
+<contactref element="V5" pad="8"/>
+<wire x1="71.63" y1="55.23" x2="82.72" y2="51.62" width="0" layer="19" extent="1-1"/>
+<wire x1="42.42" y1="55.23" x2="71.63" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="34.16" y1="36.45" x2="42.42" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="17.51" y1="30.49" x2="34.16" y2="36.45" width="0" layer="19" extent="1-1"/>
+<wire x1="28.99" y1="19.51" x2="17.51" y2="30.49" width="0" layer="19" extent="1-1"/>
+<wire x1="17.77" y1="65.21" x2="42.42" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="57.2" y1="19.51" x2="28.99" y2="19.51" width="0" layer="19" extent="1-1"/>
+<wire x1="82.89" y1="10.35" x2="57.2" y2="19.51" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="BUS1">
 <contactref element="V5" pad="3"/>
@@ -1123,6 +1506,7 @@ design rules under a new name.</description>
 <contactref element="V2" pad="3"/>
 <contactref element="V3" pad="3"/>
 <contactref element="V4" pad="3"/>
+<<<<<<< HEAD
 <wire x1="74.93" y1="49.53" x2="71.12" y2="45.72" width="0.254" layer="1"/>
 <wire x1="74.93" y1="62.23" x2="74.93" y2="49.53" width="0.254" layer="1"/>
 <wire x1="18.415" y1="60.325" x2="16.51" y2="62.23" width="0.254" layer="16"/>
@@ -1150,6 +1534,17 @@ design rules under a new name.</description>
 <via x="59.69" y="20.0025" extent="1-16" drill="0.6096"/>
 <via x="25.4" y="20.32" extent="1-16" drill="0.6096"/>
 <via x="45.72" y="43.4975" extent="1-16" drill="0.6096"/>
+=======
+<contactref element="V5" pad="3"/>
+<wire x1="58.93" y1="55.23" x2="82.72" y2="64.32" width="0" layer="19" extent="1-1"/>
+<wire x1="29.72" y1="55.23" x2="58.93" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="17.77" y1="52.51" x2="29.72" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="34.16" y1="28.83" x2="29.72" y2="55.23" width="0" layer="19" extent="1-1"/>
+<wire x1="41.69" y1="19.51" x2="34.16" y2="28.83" width="0" layer="19" extent="1-1"/>
+<wire x1="17.51" y1="17.79" x2="34.16" y2="28.83" width="0" layer="19" extent="1-1"/>
+<wire x1="69.9" y1="19.51" x2="41.69" y2="19.51" width="0" layer="19" extent="1-1"/>
+<wire x1="82.89" y1="23.05" x2="69.9" y2="19.51" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="DATA1">
 <contactref element="V5" pad="18"/>
@@ -1160,6 +1555,7 @@ design rules under a new name.</description>
 <contactref element="V2" pad="18"/>
 <contactref element="V3" pad="18"/>
 <contactref element="V4" pad="18"/>
+<<<<<<< HEAD
 <wire x1="32.385" y1="12.065" x2="29.21" y2="8.89" width="0.254" layer="1"/>
 <wire x1="33.655" y1="13.335" x2="32.385" y2="12.065" width="0.254" layer="16"/>
 <wire x1="56.1975" y1="13.335" x2="33.655" y2="13.335" width="0.254" layer="16"/>
@@ -1192,6 +1588,17 @@ design rules under a new name.</description>
 <wire x1="76.2" y1="48.26" x2="72.39" y2="44.45" width="0.254" layer="1"/>
 <via x="32.385" y="12.065" extent="1-16" drill="0.6096"/>
 <via x="56.1975" y="13.335" extent="1-16" drill="0.6096"/>
+=======
+<contactref element="V5" pad="18"/>
+<wire x1="58.93" y1="62.85" x2="90.34" y2="64.32" width="0" layer="19" extent="1-1"/>
+<wire x1="29.72" y1="62.85" x2="58.93" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="34.16" y1="46.61" x2="29.72" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="10.15" y1="52.51" x2="29.72" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="9.89" y1="17.79" x2="10.15" y2="52.51" width="0" layer="19" extent="1-1"/>
+<wire x1="41.69" y1="11.89" x2="9.89" y2="17.79" width="0" layer="19" extent="1-1"/>
+<wire x1="69.9" y1="11.89" x2="41.69" y2="11.89" width="0" layer="19" extent="1-1"/>
+<wire x1="90.51" y1="23.05" x2="69.9" y2="11.89" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="DATA2">
 <contactref element="V5" pad="17"/>
@@ -1202,6 +1609,7 @@ design rules under a new name.</description>
 <contactref element="V2" pad="17"/>
 <contactref element="V3" pad="17"/>
 <contactref element="V4" pad="17"/>
+<<<<<<< HEAD
 <wire x1="79.0575" y1="43.4975" x2="78.74" y2="43.18" width="0.254" layer="16"/>
 <wire x1="83.82" y1="43.4975" x2="79.0575" y2="43.4975" width="0.254" layer="16"/>
 <wire x1="83.82" y1="63.5" x2="83.82" y2="43.4975" width="0.254" layer="1"/>
@@ -1248,6 +1656,17 @@ design rules under a new name.</description>
 <via x="83.82" y="43.4975" extent="1-16" drill="0.6096"/>
 <via x="58.42" y="2.2225" extent="1-16" drill="0.6096"/>
 <via x="46.99" y="76.835" extent="1-16" drill="0.6096"/>
+=======
+<contactref element="V5" pad="17"/>
+<wire x1="61.47" y1="62.85" x2="90.34" y2="61.78" width="0" layer="19" extent="1-1"/>
+<wire x1="32.26" y1="62.85" x2="61.47" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="34.16" y1="44.07" x2="32.26" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="10.15" y1="55.05" x2="32.26" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="39.15" y1="11.89" x2="34.16" y2="44.07" width="0" layer="19" extent="1-1"/>
+<wire x1="67.36" y1="11.89" x2="39.15" y2="11.89" width="0" layer="19" extent="1-1"/>
+<wire x1="90.51" y1="20.51" x2="67.36" y2="11.89" width="0" layer="19" extent="1-1"/>
+<wire x1="9.89" y1="20.33" x2="39.15" y2="11.89" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="DATA3">
 <contactref element="V5" pad="14"/>
@@ -1258,6 +1677,7 @@ design rules under a new name.</description>
 <contactref element="SV1" pad="3"/>
 <contactref element="V3" pad="14"/>
 <contactref element="V4" pad="14"/>
+<<<<<<< HEAD
 <wire x1="55.88" y1="66.9925" x2="55.88" y2="69.85" width="0.254" layer="1"/>
 <wire x1="56.1975" y1="67.31" x2="55.88" y2="66.9925" width="0.254" layer="16"/>
 <wire x1="82.55" y1="67.31" x2="56.1975" y2="67.31" width="0.254" layer="16"/>
@@ -1291,6 +1711,17 @@ design rules under a new name.</description>
 <wire x1="79.6925" y1="29.21" x2="94.615" y2="29.21" width="0.254" layer="16"/>
 <via x="55.88" y="66.9925" extent="1-16" drill="0.6096"/>
 <via x="24.765" y="66.9925" extent="1-16" drill="0.6096"/>
+=======
+<contactref element="V5" pad="14"/>
+<wire x1="69.09" y1="62.85" x2="90.34" y2="54.16" width="0" layer="19" extent="1-1"/>
+<wire x1="39.88" y1="62.85" x2="69.09" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="34.16" y1="41.53" x2="39.88" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="9.89" y1="27.95" x2="34.16" y2="41.53" width="0" layer="19" extent="1-1"/>
+<wire x1="31.53" y1="11.89" x2="9.89" y2="27.95" width="0" layer="19" extent="1-1"/>
+<wire x1="59.74" y1="11.89" x2="31.53" y2="11.89" width="0" layer="19" extent="1-1"/>
+<wire x1="10.15" y1="62.67" x2="39.88" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="90.51" y1="12.89" x2="59.74" y2="11.89" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 <signal name="DATA8">
 <contactref element="V5" pad="13"/>
@@ -1301,6 +1732,7 @@ design rules under a new name.</description>
 <contactref element="V2" pad="13"/>
 <contactref element="V3" pad="13"/>
 <contactref element="V4" pad="13"/>
+<<<<<<< HEAD
 <wire x1="18.415" y1="10.795" x2="16.51" y2="8.89" width="0.254" layer="16"/>
 <wire x1="45.085" y1="10.795" x2="18.415" y2="10.795" width="0.254" layer="16"/>
 <wire x1="46.99" y1="8.89" x2="45.085" y2="10.795" width="0.254" layer="16"/>
@@ -1576,6 +2008,197 @@ design rules under a new name.</description>
 <wire x1="30.1625" y1="35.56" x2="33.655" y2="35.56" width="0.254" layer="16"/>
 <wire x1="21.2725" y1="26.67" x2="30.1625" y2="35.56" width="0.254" layer="16"/>
 <wire x1="10.16" y1="26.67" x2="21.2725" y2="26.67" width="0.254" layer="16"/>
+=======
+<contactref element="V5" pad="13"/>
+<wire x1="71.63" y1="62.85" x2="90.34" y2="51.62" width="0" layer="19" extent="1-1"/>
+<wire x1="42.42" y1="62.85" x2="71.63" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="34.16" y1="38.99" x2="42.42" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="9.89" y1="30.49" x2="34.16" y2="38.99" width="0" layer="19" extent="1-1"/>
+<wire x1="28.99" y1="11.89" x2="9.89" y2="30.49" width="0" layer="19" extent="1-1"/>
+<wire x1="57.2" y1="11.89" x2="28.99" y2="11.89" width="0" layer="19" extent="1-1"/>
+<wire x1="10.15" y1="65.21" x2="42.42" y2="62.85" width="0" layer="19" extent="1-1"/>
+<wire x1="90.51" y1="10.35" x2="57.2" y2="11.89" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$48">
+<contactref element="V6" pad="2"/>
+<contactref element="SV6" pad="1"/>
+<wire x1="73.55" y1="4.81" x2="72.44" y2="19.51" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$49">
+<contactref element="V6" pad="5"/>
+<contactref element="SV6" pad="2"/>
+<wire x1="71.01" y1="4.81" x2="64.82" y2="19.51" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$50">
+<contactref element="SV6" pad="3"/>
+<contactref element="V6" pad="6"/>
+<wire x1="68.47" y1="4.81" x2="62.28" y2="19.51" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$51">
+<contactref element="V6" pad="9"/>
+<contactref element="SV6" pad="4"/>
+<wire x1="65.93" y1="4.81" x2="54.66" y2="19.51" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$52">
+<contactref element="V6" pad="12"/>
+<contactref element="SV6" pad="5"/>
+<wire x1="63.39" y1="4.81" x2="54.66" y2="11.89" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$53">
+<contactref element="SV6" pad="6"/>
+<contactref element="V6" pad="15"/>
+<wire x1="60.85" y1="4.81" x2="62.28" y2="11.89" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$54">
+<contactref element="V6" pad="16"/>
+<contactref element="SV6" pad="7"/>
+<wire x1="58.31" y1="4.81" x2="64.82" y2="11.89" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$55">
+<contactref element="SV6" pad="8"/>
+<contactref element="V6" pad="19"/>
+<wire x1="55.77" y1="4.81" x2="72.44" y2="11.89" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$56">
+<contactref element="SV7" pad="1"/>
+<contactref element="V7" pad="2"/>
+<wire x1="46.23" y1="4.81" x2="44.23" y2="19.51" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$57">
+<contactref element="SV7" pad="2"/>
+<contactref element="V7" pad="5"/>
+<wire x1="43.69" y1="4.81" x2="36.61" y2="19.51" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$58">
+<contactref element="SV7" pad="3"/>
+<contactref element="V7" pad="6"/>
+<wire x1="41.15" y1="4.81" x2="34.07" y2="19.51" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$59">
+<contactref element="SV7" pad="4"/>
+<contactref element="V7" pad="9"/>
+<wire x1="38.61" y1="4.81" x2="26.45" y2="19.51" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$60">
+<contactref element="SV7" pad="5"/>
+<contactref element="V7" pad="12"/>
+<wire x1="26.45" y1="11.89" x2="36.07" y2="4.81" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$61">
+<contactref element="SV7" pad="6"/>
+<contactref element="V7" pad="15"/>
+<wire x1="33.53" y1="4.81" x2="34.07" y2="11.89" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$62">
+<contactref element="SV7" pad="7"/>
+<contactref element="V7" pad="16"/>
+<wire x1="30.99" y1="4.81" x2="36.61" y2="11.89" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$63">
+<contactref element="SV7" pad="8"/>
+<contactref element="V7" pad="19"/>
+<wire x1="28.45" y1="4.81" x2="44.23" y2="11.89" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$64">
+<contactref element="V7" pad="11"/>
+<contactref element="V9" pad="9"/>
+<wire x1="23.91" y1="11.89" x2="70.37" y2="27.75" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$65">
+<contactref element="SV8" pad="1"/>
+<contactref element="V8" pad="2"/>
+<wire x1="3.81" y1="14.09" x2="17.51" y2="15.25" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$66">
+<contactref element="SV8" pad="2"/>
+<contactref element="V8" pad="5"/>
+<wire x1="3.81" y1="16.63" x2="17.51" y2="22.87" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$67">
+<contactref element="SV8" pad="3"/>
+<contactref element="V8" pad="6"/>
+<wire x1="3.81" y1="19.17" x2="17.51" y2="25.41" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$68">
+<contactref element="SV8" pad="4"/>
+<contactref element="V8" pad="9"/>
+<wire x1="3.81" y1="21.71" x2="17.51" y2="33.03" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$69">
+<contactref element="SV8" pad="5"/>
+<contactref element="V8" pad="12"/>
+<wire x1="3.81" y1="24.25" x2="9.89" y2="33.03" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$70">
+<contactref element="SV8" pad="6"/>
+<contactref element="V8" pad="15"/>
+<wire x1="3.81" y1="26.79" x2="9.89" y2="25.41" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$71">
+<contactref element="SV8" pad="7"/>
+<contactref element="V8" pad="16"/>
+<wire x1="9.89" y1="22.87" x2="3.81" y2="29.33" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$72">
+<contactref element="SV8" pad="8"/>
+<contactref element="V8" pad="19"/>
+<wire x1="9.89" y1="15.25" x2="3.81" y2="31.87" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$13">
+<contactref element="V9" pad="2"/>
+<contactref element="SV12" pad="2"/>
+<wire x1="54.16" y1="39.21" x2="62.75" y2="42.99" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$14">
+<contactref element="SV12" pad="1"/>
+<contactref element="V9" pad="3"/>
+<wire x1="54.16" y1="36.67" x2="62.75" y2="40.45" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$15">
+<contactref element="SV5" pad="1"/>
+<contactref element="V5" pad="2"/>
+<wire x1="82.89" y1="25.59" x2="96" y2="31.89" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$21">
+<contactref element="SV5" pad="2"/>
+<contactref element="V5" pad="5"/>
+<wire x1="82.89" y1="17.97" x2="96" y2="29.35" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$22">
+<contactref element="SV5" pad="3"/>
+<contactref element="V5" pad="6"/>
+<wire x1="82.89" y1="15.43" x2="96" y2="26.81" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$73">
+<contactref element="SV5" pad="4"/>
+<contactref element="V5" pad="9"/>
+<wire x1="82.89" y1="7.81" x2="96" y2="24.27" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$74">
+<contactref element="SV5" pad="5"/>
+<contactref element="V5" pad="12"/>
+<wire x1="90.51" y1="7.81" x2="96" y2="21.73" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$75">
+<contactref element="SV5" pad="6"/>
+<contactref element="V5" pad="15"/>
+<wire x1="90.51" y1="15.43" x2="96" y2="19.19" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$76">
+<contactref element="SV5" pad="7"/>
+<contactref element="V5" pad="16"/>
+<wire x1="90.51" y1="17.97" x2="96" y2="16.65" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$77">
+<contactref element="SV5" pad="8"/>
+<contactref element="V5" pad="19"/>
+<wire x1="96" y1="14.11" x2="90.51" y2="25.59" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$79">
+<contactref element="V8" pad="11"/>
+<contactref element="V9" pad="7"/>
+<wire x1="9.89" y1="35.57" x2="62.75" y2="30.29" width="0" layer="19" extent="1-1"/>
+>>>>>>> 31be72e... Possible routing for two sides and full board
 </signal>
 </signals>
 </board>
