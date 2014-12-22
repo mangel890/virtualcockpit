@@ -1,2 +1,4 @@
 Debug/
 PMDGArduinoConnect.sdf
+*.v12.suo
+.gitignore
