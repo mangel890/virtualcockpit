@@ -382,21 +382,11 @@ UsedLibrary="C:/EAGLE-7.1.0/lbr/ltspice/SpecialFunctions.lbr"
 UsedLibrary="C:/EAGLE-7.1.0/lbr/ltspice/sym.lbr"
 
 [Win_1]
-Type="Text Editor"
-Loc="702 271 1201 770"
-State=2
-Number=3
-File="OutputBoard.pro"
-CursorPos="0 0"
-Font="Courier,11,-1,5,50,0,0,0,0,0"
-=======
-Type="Schematic Editor"
->>>>>>> 31be72e... Possible routing for two sides and full board
 Type="Control Panel"
 Loc="775 442 1374 841"
 State=1
 Number=0
 
 [Desktop]
-Screen="1920 1080"
+Screen="1920 2160"
 Window="Win_1"
