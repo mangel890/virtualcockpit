@@ -382,7 +382,7 @@ UsedLibrary="C:/EAGLE-7.1.0/lbr/ltspice/SpecialFunctions.lbr"
 UsedLibrary="C:/EAGLE-7.1.0/lbr/ltspice/sym.lbr"
 
 [Win_1]
-<<<<<<< HEAD
+Type="Schematic Editor"
 Type="Text Editor"
 Loc="702 271 1201 770"
 State=2
