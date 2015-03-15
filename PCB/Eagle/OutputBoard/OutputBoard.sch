@@ -766,8 +766,8 @@ W = angled&lt;p&gt;
 <class number="0" name="default" width="0.4" drill="1">
 <clearance class="0" value="0.3"/>
 </class>
-<<<<<<< HEAD
-=======
+<class number="1" name="Ground" width="0.8" drill="1">
+<clearance class="1" value="0.4"/>
 <class number="1" name="Ground" width="0.8" drill="1">
 <clearance class="1" value="0.4"/>
 </class>
