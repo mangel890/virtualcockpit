@@ -1,3 +1,5 @@
+//Input pin identifiers for rotary encoders (A down B up) 
+
 const int PCRS1A = 2;
 const int PCRS1B = 3;
 const int PIASA = 4;
@@ -11,6 +13,8 @@ const int PVSPB = 11;
 const int PCRS2A = 12;
 const int PCRS2B = 13;
 
+//Output pin identifiers for the led selector (5 pins to select 32 leds and an enabler to switch on/off)
+//Note this is also used for selecting the 7 segment displays  (up to 32)
 const int PDSP0 = 40;
 const int PDSP1 = 41;
 const int PDSP2 = 42;
@@ -18,6 +22,8 @@ const int PDSP3 = 43;
 const int PDSP4 = 44;
 const int PDSP5 = 45;
 const int PENBL = 38;
+
+//Output pin identifiers for the 7 segments leds (note each display is selected with the above pins)
 const int PSEGA = 53;
 const int PSEGB = 51;
 const int PSEGC = 49;
@@ -27,6 +33,7 @@ const int PSEGF = 52;
 const int PSEGG = 50;
 const int PSEGDP = 48;
 
+//Input pin identifiers for switches
 const int PSWATARM = 22;
 const int PSWN1 = 24;
 const int PSWCO = 26;
@@ -104,6 +111,10 @@ class Displays
 
   public:
 
+    // A ctor for defining a 7 segment display in the system
+    // displayX: pins for selecting which display to activate
+    // enabler: pin to switch it on/off
+    // valueX: pin for the 7 segment led (A,B,C,D,E,F,G)
     Displays(int display0, int display1, int display2, int display3, int display4, int display5, int enabler,
              int valueA, int valueB, int valueC, int valueD, int valueE, int valueF, int valueG, int valueDP):
       pinDisplay0M(display0), pinDisplay1M(display1), pinDisplay2M(display2), pinDisplay3M(display3), pinDisplay4M(display4),
@@ -193,10 +204,6 @@ class Displays
       }
       else if (strcmp(command, "VSPM") == 0)
       {
-/*        int pointSet = 0;
-        if (value[1] == '-')
-          pointSet = 1000;
-          */
         setDisplay(15, (value[4] - '0'));
         setDisplay(16, (value[3] - '0'));
         setDisplay(17, (value[2] - '0'));
@@ -684,7 +691,6 @@ class SerialBuffer
 void setup () {
 
   Serial.begin (38400, SERIAL_8O2);
-//  Serial.begin (9600, SERIAL_8O2);
   pinMode(13, OUTPUT);
 
 }
@@ -856,9 +862,5 @@ void loop ()
     }
 
   }
-
-  //  while (Serial.available() > 0)
-  //    Serial.read();
-
 };
 
