@@ -32,7 +32,7 @@ Serial* MainFactory::getSerialIf()
 {
 	if (serialIfM == nullptr)
 	{
-		serialIfM = new Serial(L"COM5");
+		serialIfM = new Serial(L"COM4");
 	}
 	return serialIfM;
 }
