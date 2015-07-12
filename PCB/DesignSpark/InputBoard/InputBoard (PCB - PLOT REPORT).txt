@@ -1,0 +1,121 @@
+PLOT REPORT
+-----------
+
+Report File:        C:\virtualcockpit.git\PCB\DesignSpark\InputBoard\InputBoard (PCB - PLOT REPORT).txt
+Report Written:     Sunday, July 12, 2015
+Project Path:       C:\virtualcockpit.git\PCB\DesignSpark\InputBoard\InputBoard.prj
+Design Path:        C:\virtualcockpit.git\PCB\DesignSpark\InputBoard\InputBoard.pcb
+Design Title:       
+Created:            28/03/2015 19:30:17
+Last Saved:         12/07/2015 17:48:07
+Editing Time:       423 min
+Units:              mm (precision 1)
+
+
+Device Settings
+===============
+
+
+Gerber Settings
+===============
+
+    Leading zero suppression.
+    G01 assumed throughout.
+    Line termination <*> <CR> <LF>.
+    2.3 format absolute inches.
+    Format commands defined in Gerber file.
+    Aperture table defined in Gerber file.
+    Hardware arcs allowed.
+
+
+Drill Settings
+==============
+
+    Excellon Format 1    Format 3.3 absolute in mm.
+    No zero suppression.
+
+
+Plots Output
+============
+
+    Plot Job: "C:\virtualcockpit.git\PCB\DesignSpark\InputBoard\InputBoard.mop"
+
+
+Gerber Output
+=============
+
+C:\virtualcockpit.git\PCB\DesignSpark\InputBoard\InputBoard - Top Copper.gbr
+
+    Layers:
+    --------------
+    Top Copper
+
+    D-Code Shape  (thou)
+    -----------------------
+    D10    Round 1.00
+    D11    Square 51.00
+    D12    Round 51.00
+    D13    Round 55.00
+    D14    Square 55.00
+    D15    Round 11.81
+    D16    Round 56.00
+    D17    Round 48.00
+
+Gerber Output
+=============
+
+C:\virtualcockpit.git\PCB\DesignSpark\InputBoard\InputBoard - Bottom Copper.gbr
+
+    Layers:
+    -----------------
+    Bottom Copper
+
+    D-Code Shape  (thou)
+    -----------------------
+    D10    Round 1.00
+    D11    Square 51.00
+    D12    Round 51.00
+    D13    Round 55.00
+    D14    Square 55.00
+    D15    Round 11.81
+    D16    Round 56.00
+    D17    Round 48.00
+
+NC Drill Output
+===============
+
+C:\virtualcockpit.git\PCB\DesignSpark\InputBoard\InputBoard - Drill Data - [Through Hole].drl
+
+    Output:
+    ---------------------------
+    Plated Round Drill Holes
+    Plated Slots
+    Plated Board Outlines
+
+    Tool  Size       Count   ID
+    ----------------------------------
+    T001  000.610 mm 50    D
+    T002  000.787 mm 128   A
+    T003  000.813 mm 17    C
+    T004  000.889 mm 261   B
+    ----------------------------------
+    Total            456
+    ----------------------------------
+
+C:\virtualcockpit.git\PCB\DesignSpark\InputBoard\InputBoard - Drill Data - [Through Hole] (Unplated).drl
+
+    Output:
+    -----------------------------
+    Unplated Round Drill Holes
+    Unplated Slots
+    Unplated Board Outlines
+
+    Tool  Size       Count   ID
+    ----------------------------------
+    T001  000.635 mm 1
+    ----------------------------------
+    Total            1
+    ----------------------------------
+
+
+End Of Report.
