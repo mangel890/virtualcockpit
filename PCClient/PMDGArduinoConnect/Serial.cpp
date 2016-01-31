@@ -5,10 +5,10 @@
 Serial::Serial(wchar_t const * portName)
 {
 	//We're not yet connected
-	this->connected = false;
+	this->connected_ = false;
 
 	//Try to connect to the given port throuh CreateFile
-	this->hSerial = CreateFile(portName,
+	this->hSerial_ = CreateFile(portName,
 		GENERIC_READ | GENERIC_WRITE,
 		0,
 		NULL,
@@ -17,7 +17,7 @@ Serial::Serial(wchar_t const * portName)
 		NULL);
 
 	//Check if the connection was successfull
-	if(this->hSerial==INVALID_HANDLE_VALUE)
+	if(this->hSerial_==INVALID_HANDLE_VALUE)
 	{
 		//If not success full display an Error
 		if(GetLastError()==ERROR_FILE_NOT_FOUND){
@@ -39,7 +39,7 @@ Serial::Serial(wchar_t const * portName)
 		DCB dcbSerialParams = {0};
 
 		//Try to get the current
-		if (!GetCommState(this->hSerial, &dcbSerialParams))
+		if (!GetCommState(this->hSerial_, &dcbSerialParams))
 		{
 			//If impossible, show an error
 			Logger::log("\n Serial:: failed to get current serial parameters!\n");
@@ -62,14 +62,14 @@ Serial::Serial(wchar_t const * portName)
 			//dcbSerialParams.fDsrSensitivity = true;
 
 			//Set the parameters and check for their proper application
-			if(!SetCommState(hSerial, &dcbSerialParams))
+			if(!SetCommState(hSerial_, &dcbSerialParams))
 			{
 				Logger::log("\nSerial:: ALERT: Could not set Serial Port parameters\n");
 			}
 			else
 			{
 				//If everything went fine we're connected
-				this->connected = true;
+				this->connected_ = true;
 				//We wait 2s as the arduino board will be reseting
 				Sleep(ARDUINO_WAIT_TIME);
 			}
@@ -81,12 +81,12 @@ Serial::Serial(wchar_t const * portName)
 Serial::~Serial()
 {
 	//Check if we are connected before trying to disconnect
-	if(this->connected)
+	if(this->connected_)
 	{
 		//We're no longer connected
-		this->connected = false;
+		this->connected_ = false;
 		//Close the serial handler
-		CloseHandle(this->hSerial);
+		CloseHandle(this->hSerial_);
 	}
 }
 
@@ -98,31 +98,31 @@ int Serial::ReadData(char *buffer, unsigned int nbChar)
 	unsigned int toRead;
 
 	//Use the ClearCommError function to get status info on the Serial port
-	ClearCommError(this->hSerial, &this->errors, &this->status);
+	ClearCommError(this->hSerial_, &this->errors_, &this->status_);
 
 	//Check if there is something to read
-	if(this->status.cbInQue>0)
+	if(this->status_.cbInQue>0)
 	{
 		//If there is we check if there is enough data to read the required number
 		//of characters, if not we'll read only the available characters to prevent
 		//locking of the application.
-		if(this->status.cbInQue>nbChar)
+		if(this->status_.cbInQue>nbChar)
 		{
 			toRead = nbChar;
 		}
 		else
 		{
-			toRead = this->status.cbInQue;
+			toRead = this->status_.cbInQue;
 		}
 
 		//Try to read the require number of chars, and return the number of read bytes on success
-		if(ReadFile(this->hSerial, buffer, toRead, &bytesRead, NULL) && bytesRead != 0)
+		if(ReadFile(this->hSerial_, buffer, toRead, &bytesRead, NULL) && bytesRead != 0)
 		{
 			return bytesRead;
 		}
 
 	}
-
+	
 	//If nothing has been read, or that an error was detected return -1
 	return -1;
 
@@ -132,9 +132,9 @@ int Serial::ReadData(char *buffer, unsigned int nbChar)
 bool Serial::WriteData(char *buffer, unsigned int nbChar)
 {
 	DWORD bytesSend;
-
+	
 	//Try to write the buffer on the Serial port
-	if(false == WriteFile(this->hSerial, (void *)buffer, nbChar, &bytesSend, 0))
+	if(false == WriteFile(this->hSerial_, (void *)buffer, nbChar, &bytesSend, 0))
 	{
 		DWORD Error = GetLastError();
 		LPVOID lpMsgBuf;
@@ -153,7 +153,7 @@ bool Serial::WriteData(char *buffer, unsigned int nbChar)
 		Logger::log(gcnew System::String(((LPCTSTR)lpMsgBuf)));
 			
 		//In case it don't work get comm error and return false
-		ClearCommError(this->hSerial, &this->errors, &this->status);
+		ClearCommError(this->hSerial_, &this->errors_, &this->status_);
 
 		return false;
 	}
@@ -164,6 +164,7 @@ bool Serial::WriteData(char *buffer, unsigned int nbChar)
 
 bool Serial::IsConnected()
 {
+	
 	//Simply return the connection status
-	return this->connected;
+	return this->connected_;
 }

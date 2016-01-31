@@ -55,8 +55,7 @@ public:
 		else
 		{
 			this->consoleLog->AppendText(str);;
-			/*this->consoleLog->SelectionStart = this->consoleLog->Text->Length;
-			this->consoleLog->ScrollToCaret();*/
+	
 		}
 
 	}

@@ -9,13 +9,13 @@ class Serial
 {
     private:
         //Serial comm handler
-        HANDLE hSerial;
+        HANDLE hSerial_;
         //Connection status
-        bool connected;
+        bool connected_;
         //Get various information about the connection
-        COMSTAT status;
+        COMSTAT status_;
         //Keep track of last error
-        DWORD errors;
+        DWORD errors_;
 
     public:
         //Initialize Serial communication with the given COM port

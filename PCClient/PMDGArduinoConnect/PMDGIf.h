@@ -16,24 +16,18 @@
 #using <System.Drawing.dll>
 #using <System.Windows.Forms.dll>
 
-//using namespace System::Windows::Forms;
-
-
 #include "SimConnect.h"
 #include "MainFactory.h"
-//class MainFactory;
-
-//void CALLBACK MyDispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void *pContext);
 
 class PMDGIf
 {
 public:
 	PMDGIf();
 
-	int     quit ;
-	HANDLE  hSimConnect;
-	bool    AircraftRunning;		
-	PMDG_NGX_Control Control; 
+	int     quit_ ;
+	HANDLE  hSimConnect_;
+	bool    AircraftRunning_;		
+	PMDG_NGX_Control Control_; 
 
 
 	static enum DATA_REQUEST_ID {
