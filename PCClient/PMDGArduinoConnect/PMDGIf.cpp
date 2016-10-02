@@ -1048,6 +1048,25 @@ void PMDGIf::DispatchProc(SIMCONNECT_RECV* pData, DWORD cbData, void *pContext)
 		break;
 	}
 
+	case SIMCONNECT_RECV_ID_EXCEPTION:
+	{
+		char buffer[100];
+		sprintf_s(buffer, "\n\n PMDGIf::DispatchProc: EXCEPTION: %d\n", pData->dwID);
+		Logger::log(gcnew System::String(buffer));
+		break;
+
+
+	}
+	
+	case SIMCONNECT_RECV_ID_OPEN:
+	{
+		char buffer[100];
+		sprintf_s(buffer, "\n\n PMDGIf::DispatchProc: OPEN : %d\n", pData->dwID);
+		Logger::log(gcnew System::String(buffer));
+		break;
+	}
+
+
 	default:
 		char buffer[100];
 		sprintf_s(buffer, "\n\n PMDGIf::DispatchProc: Unknown received data (1==Exception): %d\n", pData->dwID);
