@@ -1,0 +1,17 @@
+How to design and etch PCBs
+=============================
+
+Design your PCB in DesignSpark.
+Increase tracks (for signals) and pads to XXX and YYY.
+Print in negative.
+Print Top Layer as mirror and Bottom as normal in transparent plastic paper.
+The goal is that the toner side is put next to the copper clad.
+
+
+Cut dry film: Fix with your fingers and make sure no bubbles are left. Avoid imperfections.
+Fix with two glasses and put in under the sun: 1:20 mins each side should be enough (measured in October, sunny day at 14:00, Madrid).
+Develop the board. Wait some more minutes after the copper is completely visible. There may be traces of invisible plastic that might ruin the etching process.
+Etch the board: Muriatic Acid and Hydorigen Peroxide 2:1. Just 40ml+20ml should be enough for a small board (10 cm x 7 cm)
+Wash and remove the resist layer (blue).
+
+
