@@ -1,0 +1,9 @@
+You need PMDG SDK.
+
+To compile, use the header file. 
+
+You can get it from the official product. Or there are also some references in: 
+
+https://raw.githubusercontent.com/maciekish/SimInterface/master/Windows/PMDGWrapper/PMDG_NGX_SDK.h
+
+
